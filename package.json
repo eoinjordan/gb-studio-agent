@@ -1,6 +1,6 @@
 {
   "name": "gbstudio-claude-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Claude MCP server for GB Studio project manipulation.",
   "main": "dist/index.js",
   "scripts": {
