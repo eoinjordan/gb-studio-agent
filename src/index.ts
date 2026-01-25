@@ -60,7 +60,7 @@ app.post('/actor/create', (req: Request, res: Response) => {
     }
     scene.actors.push(actor);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, actor });
+    res.json({ success: true, actor: { ...actor, id: actor.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -116,7 +116,7 @@ app.post('/trigger/create', (req: Request, res: Response) => {
     }
     scene.triggers.push(trigger);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, trigger });
+    res.json({ success: true, trigger: { ...trigger, id: trigger.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -165,7 +165,7 @@ app.post('/script/create', (req: Request, res: Response) => {
     }
     data.scripts.push(script);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, script });
+    res.json({ success: true, script: { ...script, id: script.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -214,7 +214,7 @@ app.post('/background/create', (req: Request, res: Response) => {
     }
     data.backgrounds.push(background);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, background });
+    res.json({ success: true, background: { ...background, id: background.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -263,7 +263,7 @@ app.post('/sprite/create', (req: Request, res: Response) => {
     }
     data.spriteSheets.push(sprite);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, sprite });
+    res.json({ success: true, sprite: { ...sprite, id: sprite.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -312,7 +312,7 @@ app.post('/emote/create', (req: Request, res: Response) => {
     }
     data.emotes.push(emote);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, emote });
+    res.json({ success: true, emote: { ...emote, id: emote.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -361,7 +361,7 @@ app.post('/avatar/create', (req: Request, res: Response) => {
     }
     data.avatars.push(avatar);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, avatar });
+    res.json({ success: true, avatar: { ...avatar, id: avatar.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -460,7 +460,7 @@ app.post('/tileset/create', (req: Request, res: Response) => {
     }
     data.tilesets.push(tileset);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, tileset });
+    res.json({ success: true, tileset: { ...tileset, id: tileset.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -509,7 +509,7 @@ app.post('/sound/create', (req: Request, res: Response) => {
     }
     data.sounds.push(sound);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, sound });
+    res.json({ success: true, sound: { ...sound, id: sound.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -558,7 +558,7 @@ app.post('/music/create', (req: Request, res: Response) => {
     }
     data.music.push(music);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, music });
+    res.json({ success: true, music: { ...music, id: music.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -607,7 +607,7 @@ app.post('/palette/create', (req: Request, res: Response) => {
     }
     data.palettes.push(palette);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, palette });
+    res.json({ success: true, palette: { ...palette, id: palette.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -656,7 +656,7 @@ app.post('/variable/create', (req: Request, res: Response) => {
     }
     data.variables.push(variable);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, variable });
+    res.json({ success: true, variable: { ...variable, id: variable.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -705,7 +705,7 @@ app.post('/constant/create', (req: Request, res: Response) => {
     }
     data.constants.push(constant);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, constant });
+    res.json({ success: true, constant: { ...constant, id: constant.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -754,7 +754,7 @@ app.post('/engine-field-value/create', (req: Request, res: Response) => {
     }
     data.engineFieldValues.push(engineFieldValue);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, engineFieldValue });
+    res.json({ success: true, engineFieldValue: { ...engineFieldValue, id: engineFieldValue.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -893,7 +893,7 @@ app.post('/prefab/actor/create', (req: Request, res: Response) => {
     }
     data.prefabActors.push(actorPrefab);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, actorPrefab });
+    res.json({ success: true, actorPrefab: { ...actorPrefab, id: actorPrefab.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -942,7 +942,7 @@ app.post('/prefab/trigger/create', (req: Request, res: Response) => {
     }
     data.prefabTriggers.push(triggerPrefab);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, triggerPrefab });
+    res.json({ success: true, triggerPrefab: { ...triggerPrefab, id: triggerPrefab.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
@@ -995,7 +995,7 @@ app.post('/scene/create', (req: Request, res: Response) => {
     }
     data.scenes.push(scene);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, scene });
+    res.json({ success: true, scene: { ...scene, id: scene.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
