@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Claude MCP Server for GB Studio
 
 ![Build](https://github.com/eoinedge/gbstudio-claude-mcp/actions/workflows/build.yml/badge.svg)
@@ -251,3 +252,6 @@ To publish a new version:
 
 ## License
 MIT
+=======
+
+>>>>>>> 2e13f3f5eb64bb7c04247403aa92c8eb257f022a
