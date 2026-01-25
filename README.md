@@ -1,9 +1,57 @@
+
+### Pong (Game Boy)
+```
+Create a Pong clone for the original Game Boy. Two paddles, a ball, and a score counter. The player controls the left paddle, the right paddle is AI-controlled. Use simple monochrome graphics and authentic GB sound effects. Generate all scenes, actors, and assets for a playable Pong game.
+```
+
+### Pac-Man (Game Boy Color)
+```
+Build a Pac-Man style maze game for Game Boy Color. The player navigates a maze, collects pellets, and avoids ghosts. Include at least one maze layout, four ghosts with basic AI, and colorful graphics. Generate all scenes, actors, and assets needed for a playable demo.
+```
+
+### Mario Bros Style Platformer (Game Boy Color)
+```
+Design a Mario Bros inspired platformer for Game Boy Color. The player can run, jump, and stomp on enemies. Include three levels, power-ups, coins, and a flagpole at the end of each level. Use bright palettes and catchy background music. Generate all scenes, actors, and assets for a classic platformer experience.
+```
+
+### Space Shooter (Game Boy)
+```
+Create a vertical scrolling space shooter for the original Game Boy. The player controls a spaceship, shoots enemies, and dodges obstacles. Include multiple enemy types, power-ups, and a boss fight. Use classic GB graphics and chiptune sound effects. Generate all scenes, actors, and assets for a playable shooter.
+```
 # Claude MCP Server for GB Studio
 
 
 ![Build](https://github.com/eoinjordan/gb-studio-agent/actions/workflows/build.yml/badge.svg)
 ![Tests](https://github.com/eoinjordan/gb-studio-agent/actions/workflows/test.yml/badge.svg)
+
 [![npm version](https://img.shields.io/npm/v/gbstudio-claude-mcp.svg)](https://www.npmjs.com/package/gbstudio-claude-mcp)
+
+---
+
+## MCP Protocol Support
+
+This package supports the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). You can run the server in MCP stdio mode for use with Claude Desktop and other MCP clients:
+
+```sh
+node build/mcp.js
+```
+
+Or add this to your Claude Desktop MCP server configuration:
+
+```
+{
+   "mcpServers": {
+      "gbstudio-mcp": {
+         "command": "node",
+         "args": ["/absolute/path/to/build/mcp.js"]
+      }
+   }
+}
+```
+
+This enables full tool discovery and compatibility with any MCP-compliant client.
+
+---
 
 This project is a TypeScript MCP (Model Context Protocol) server for manipulating GB Studio projects. It exposes endpoints for project discovery, inventory, validation, and creation of game assets.
 
@@ -217,6 +265,30 @@ To build a GB Studio game using this MCP server with Claude:
 8. **Build/Export:** (Future) Use build endpoint to compile the game.
 
 Note: All endpoints are now fully functional.
+
+## Sample Prompts
+
+Here are example prompts you can use with Claude or any MCP client to build different types of GB Studio games:
+
+### 2D Side Scroller (Game Boy Color)
+```
+Build a 2D side-scrolling platformer for Game Boy Color. The player controls a character who can run, jump, and collect coins. Add three levels with increasing difficulty, background music, and a simple enemy type. Use bright palettes and parallax backgrounds. Generate all scenes, actors, and assets needed for a playable demo.
+```
+
+### 2D Side Scroller (Original Game Boy)
+```
+Create a classic monochrome side-scroller for the original Game Boy. The player should be able to move left/right and jump over obstacles. Include two levels, a score counter, and a simple end boss. Use authentic GB palettes and sound effects. Generate all required scenes, actors, and assets.
+```
+
+### Top-Down Adventure (Game Boy Color)
+```
+Design a top-down adventure game for Game Boy Color in the style of Zelda. The player explores a village, talks to NPCs, and collects items to unlock new areas. Include at least two scenes (village and forest), inventory management, and colorful tilemaps. Generate all scenes, actors, triggers, and assets for a playable prototype.
+```
+
+### Top-Down Adventure (Original Game Boy)
+```
+Make a top-down RPG for the original Game Boy. The player can walk in four directions, interact with objects, and battle simple enemies. Include a town, an overworld, and a dungeon scene. Use classic GB graphics and chiptune music. Generate all scenes, actors, triggers, and assets needed for a basic demo.
+```
 
 ## Test Coverage
 All endpoints are covered by Jest tests in the `tests/` directory. Run `npm test` to validate all functionality. Tests use real sample projects.
