@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 # Claude MCP Server for GB Studio
 
-![Build](https://github.com/eoinedge/gbstudio-claude-mcp/actions/workflows/build.yml/badge.svg)
-![Tests](https://github.com/eoinedge/gbstudio-claude-mcp/actions/workflows/test.yml/badge.svg)
-![npm version](https://img.shields.io/npm/v/gbstudio-claude-mcp.svg)
-# Claude MCP Server for GB Studio
+
+![Build](https://github.com/eoinjordan/gb-studio-agent/actions/workflows/build.yml/badge.svg)
+![Tests](https://github.com/eoinjordan/gb-studio-agent/actions/workflows/test.yml/badge.svg)
+[![npm version](https://img.shields.io/npm/v/gbstudio-claude-mcp.svg)](https://www.npmjs.com/package/gbstudio-claude-mcp)
 
 This project is a TypeScript MCP (Model Context Protocol) server for manipulating GB Studio projects. It exposes endpoints for project discovery, inventory, validation, and creation of game assets.
 
@@ -52,8 +51,8 @@ npm install -g gbstudio-claude-mcp
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/eoinedge/gbstudio-claude-mcp.git
-   cd gbstudio-claude-mcp
+   git clone https://github.com/eoinjordan/gb-studio-agent.git
+   cd gb-studio-agent
    ```
 
 2. **Install Node.js** (recommended: v21.7.1 or compatible)
@@ -224,34 +223,32 @@ All endpoints are covered by Jest tests in the `tests/` directory. Run `npm test
 
 ## Publishing
 
+
+## Publishing
+
 To publish a new version:
 
-1. **Choose a unique package name:** Update `name` in package.json to something unique (e.g., `gbstudio-claude-mcp`).
-2. **Update repository URLs:** Replace placeholder URLs with your actual GitHub repository.
-3. **Update version in package.json**
-4. **Build the project:**
+1. **Update version in package.json**
+2. **Build the project:**
    ```sh
    npm run build
    ```
-5. **Login to npm:**
+3. **Login to npm:**
    ```sh
-   npm login
+   npm login --auth-type=legacy
    ```
-6. **Publish to npm:**
+4. **Publish to npm:**
    ```sh
-   npm publish
+   npm publish --access public
    ```
 
-**Note:** Ensure your npm account has 2FA enabled and use a granular access token if required.
+**Note:** Ensure your npm account has 2FA enabled and use a granular automation token if required. See [npm publishing docs](https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages) for more info.
 
 ## Contributing
 1. Fork the repository
 2. Create a feature branch
 3. Make changes and add tests
-4. Submit a pull request
+4. Submit a pull request to [https://github.com/eoinjordan/gb-studio-agent](https://github.com/eoinjordan/gb-studio-agent)
 
 ## License
 MIT
-=======
-
->>>>>>> 2e13f3f5eb64bb7c04247403aa92c8eb257f022a
