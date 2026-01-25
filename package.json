@@ -18,18 +18,21 @@
     "typescript",
     "game-development"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "Eoin Jordan <eoin.jordan@insight-centre.org>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/gbstudio-claude-mcp.git"
+    "url": "https://github.com/eoinjordan/gb-studio-agent.git"
   },
-  "homepage": "https://github.com/yourusername/gbstudio-claude-mcp#readme",
+  "homepage": "https://github.com/eoinjordan/gb-studio-agent#readme",
   "bugs": {
-    "url": "https://github.com/yourusername/gbstudio-claude-mcp/issues"
+    "url": "https://github.com/eoinjordan/gb-studio-agent/issues"
   },
   "engines": {
     "node": ">=16.0.0"
+  },
+  "bin": {
+    "gbstudio-claude-mcp": "./dist/index.js"
   },
   "files": [
     "dist",
