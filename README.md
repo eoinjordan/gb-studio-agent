@@ -22,15 +22,62 @@ Design a Mario Bros inspired platformer for Game Boy Color. The player can run, 
 ```
 Create a vertical scrolling space shooter for the original Game Boy. The player controls a spaceship, shoots enemies, and dodges obstacles. Include multiple enemy types, power-ups, and a boss fight. Use classic GB graphics and chiptune sound effects. Generate all scenes, actors, and assets for a playable shooter.
 ```
+
+
 # Claude MCP Server for GB Studio
 
-
-![Build](https://github.com/eoinjordan/gb-studio-agent/actions/workflows/build.yml/badge.svg)
-![Tests](https://github.com/eoinjordan/gb-studio-agent/actions/workflows/test.yml/badge.svg)
-
-[![npm version](https://img.shields.io/npm/v/gbstudio-claude-mcp.svg)](https://www.npmjs.com/package/gbstudio-claude-mcp)
+This is a TypeScript server for manipulating GB Studio projects using the Model Context Protocol (MCP). It provides endpoints for project discovery, validation, and creation of game assets.
 
 ---
+
+## Installation
+
+Install globally with npm:
+
+```sh
+npm install -g gbstudio-claude-mcp
+```
+
+---
+
+## Local Environment Setup (.env)
+
+For local development, store API keys and configuration in a `.env` file at the project root. This keeps secrets out of source control and matches the pattern used in GitHub Actions.
+
+1. Create a `.env` file in the project root:
+   ```env
+   CLAUDE_API_KEY=your-claude-api-key-here
+   # Add other keys as needed
+   ```
+2. The server will automatically load variables from `.env` if you use [dotenv].
+3. `.env` files are gitignored by default.
+
+Never commit your `.env` file to source control.
+
+---
+
+## Usage
+
+Start the server:
+
+```sh
+gbstudio-claude-mcp
+```
+
+The server runs on http://localhost:3000 by default.
+
+Configure your MCP client (e.g., Claude Desktop) to connect to this server. For full setup and troubleshooting, see the tutorial linked at the end of this document.
+
+---
+
+## End-to-End Usage: Windows & Linux/macOS
+
+See the [TUTORIAL.md](TUTORIAL.md) for a complete, step-by-step guide to building a GB Studio game with this server, including screenshots and troubleshooting tips for both Windows and Linux/macOS.
+
+---
+
+
+
 
 ## MCP Protocol Support
 
@@ -40,7 +87,7 @@ This package supports the [Model Context Protocol (MCP)](https://modelcontextpro
 node build/mcp.js
 ```
 
-Or add this to your Claude Desktop MCP server configuration:
+Or add this to your MCP client configuration:
 
 ```
 {
@@ -53,78 +100,37 @@ Or add this to your Claude Desktop MCP server configuration:
 }
 ```
 
-This enables full tool discovery and compatibility with any MCP-compliant client.
-
 ---
 
-This project is a TypeScript MCP (Model Context Protocol) server for manipulating GB Studio projects. It exposes endpoints for project discovery, inventory, validation, and creation of game assets.
-
-## Features
-- TypeScript Express MCP server
-- Endpoints for GB Studio project operations
-- Robust error handling and validation
-- Jest test framework with full coverage
-- End-to-end test with real Poachermon project
-
-## Installation
-
-```sh
-npm install -g gbstudio-claude-mcp
-```
-
-## Usage with Claude
-
-1. **Start the MCP server:**
-   ```sh
-   gbstudio-claude-mcp
-   ```
-   The server will run on `http://localhost:3000` by default.
-
-2. **Configure Claude Desktop:**
-   - Open Claude Desktop settings
-   - Go to "MCP Servers"
-   - Add a new server with:
-       - Name: GB Studio MCP
-       - Command: `gbstudio-claude-mcp`
-       - Or URL: `http://localhost:3000`
-
-3. **Set Claude API Key (optional):**
-   ```sh
-   curl -X POST http://localhost:3000/claude/key -H "Content-Type: application/json" -d '{"key": "your-claude-api-key"}'
-   ```
 
 ## Project Structure
-- `src/index.ts` — Main server and endpoint logic
-- `tests/` — Jest test suites for all endpoints
-- `tests/poachermon/` — Real GB Studio project for integration tests
-- `gbstudio_api_endpoints.csv` — Catalog of all planned endpoints
+- src/index.ts — Main server and endpoint logic
+- tests/ — Jest test suites for all endpoints
+- tests/poachermon/ — Real GB Studio project for integration tests
+- gbstudio_api_endpoints.csv — Catalog of all planned endpoints
 
 ## Local Development
 
-1. **Clone the repository:**
+1. Clone the repository:
    ```sh
    git clone https://github.com/eoinjordan/gb-studio-agent.git
    cd gb-studio-agent
    ```
-
-2. **Install Node.js** (recommended: v21.7.1 or compatible)
-
-3. **Install dependencies:**
+2. Install Node.js (recommended: v21.7.1 or compatible)
+3. Install dependencies:
    ```sh
    npm install
    ```
-
-4. **Start the development server:**
+4. Start the development server:
    ```sh
    npm run dev
    ```
-
-5. **Run the test suite:**
+5. Run the test suite:
    ```sh
    npm test
    ```
 
-## Endpoints
+---
 
 ### Health
 - `GET /health` — Returns `{ status: "ok" }` for health checks.
@@ -270,61 +276,44 @@ To build a GB Studio game using this MCP server with Claude:
 
 Note: All endpoints are now fully functional.
 
-## Sample Prompts
 
-Here are example prompts you can use with Claude or any MCP client to build different types of GB Studio games:
+## Example Prompts
 
-### 2D Side Scroller (Game Boy Color)
-```
-Build a 2D side-scrolling platformer for Game Boy Color. The player controls a character who can run, jump, and collect coins. Add three levels with increasing difficulty, background music, and a simple enemy type. Use bright palettes and parallax backgrounds. Generate all scenes, actors, and assets needed for a playable demo.
-```
+See [TUTORIAL.md](TUTORIAL.md) for detailed sample prompts and full end-to-end workflows for different game genres.
 
-### 2D Side Scroller (Original Game Boy)
-```
-Create a classic monochrome side-scroller for the original Game Boy. The player should be able to move left/right and jump over obstacles. Include two levels, a score counter, and a simple end boss. Use authentic GB palettes and sound effects. Generate all required scenes, actors, and assets.
-```
 
-### Top-Down Adventure (Game Boy Color)
-```
-Design a top-down adventure game for Game Boy Color in the style of Zelda. The player explores a village, talks to NPCs, and collects items to unlock new areas. Include at least two scenes (village and forest), inventory management, and colorful tilemaps. Generate all scenes, actors, triggers, and assets for a playable prototype.
-```
-
-### Top-Down Adventure (Original Game Boy)
-```
-Make a top-down RPG for the original Game Boy. The player can walk in four directions, interact with objects, and battle simple enemies. Include a town, an overworld, and a dungeon scene. Use classic GB graphics and chiptune music. Generate all scenes, actors, triggers, and assets needed for a basic demo.
-```
 
 ## Test Coverage
-All endpoints are covered by Jest tests in the `tests/` directory. Run `npm test` to validate all functionality. Tests use real sample projects.
-
-## Publishing
+All endpoints are covered by Jest tests in the tests/ directory. Run `npm test` to validate all functionality. Tests use real sample projects.
 
 
 ## Publishing
 
 To publish a new version:
 
-1. **Update version in package.json**
-2. **Build the project:**
+1. Update version in package.json
+2. Build the project:
    ```sh
    npm run build
    ```
-3. **Login to npm:**
+3. Login to npm:
    ```sh
    npm login --auth-type=legacy
    ```
-4. **Publish to npm:**
+4. Publish to npm:
    ```sh
    npm publish --access public
    ```
 
-**Note:** Ensure your npm account has 2FA enabled and use a granular automation token if required. See [npm publishing docs](https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages) for more info.
+See npm publishing docs for more info.
+
 
 ## Contributing
 1. Fork the repository
 2. Create a feature branch
 3. Make changes and add tests
-4. Submit a pull request to [https://github.com/eoinjordan/gb-studio-agent](https://github.com/eoinjordan/gb-studio-agent)
+4. Submit a pull request to https://github.com/eoinjordan/gb-studio-agent
+
 
 ## License
 MIT

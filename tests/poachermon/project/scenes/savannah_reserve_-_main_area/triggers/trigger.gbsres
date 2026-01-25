@@ -1,0 +1,23 @@
+{
+  "_resourceType": "trigger",
+  "id": "5eadc594-d498-43b4-9e0f-d7e83f03b30d",
+  "_index": 0,
+  "symbol": "trigger_0",
+  "prefabId": "",
+  "name": "",
+  "x": 25,
+  "y": 13,
+  "width": 2,
+  "height": 2,
+  "prefabScriptOverrides": {},
+  "script": [
+    {
+      "id": "disabled-trigger",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": "This area is closed for ranger operations."
+      }
+    }
+  ],
+  "leaveScript": []
+}

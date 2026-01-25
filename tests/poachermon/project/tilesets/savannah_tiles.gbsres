@@ -1,0 +1,11 @@
+{
+  "_resourceType": "tileset",
+  "id": "42d3fab6-881b-4e84-af55-e1a3bb909fa5",
+  "name": "savannah_tiles",
+  "symbol": "tileset_savannah_tiles",
+  "width": 16,
+  "height": 16,
+  "imageWidth": 128,
+  "imageHeight": 128,
+  "filename": "savannah_tiles.png"
+}

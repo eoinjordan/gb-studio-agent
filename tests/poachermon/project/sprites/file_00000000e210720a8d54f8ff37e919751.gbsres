@@ -1,0 +1,101 @@
+{
+  "_resourceType": "sprite",
+  "id": "de9c6c22-5c8f-4a0e-98b9-05d405a93c86",
+  "name": "file_00000000e210720a8d54f8ff37e91975[1]",
+  "symbol": "sprite_file_00000000e210720",
+  "numFrames": 64,
+  "filename": "file_00000000e210720a8d54f8ff37e91975[1].png",
+  "checksum": "ffa462b4b9ca624e570e22885771f6e6f976e55a",
+  "width": 1024,
+  "height": 1024,
+  "states": [
+    {
+      "id": "9439ec33-6d63-47ef-81e4-f8f41c6e2615",
+      "name": "",
+      "animationType": "multi_movement",
+      "flipLeft": true,
+      "animations": [
+        {
+          "id": "b68d53e1-7c5c-4751-9128-168605f3b91f",
+          "frames": [
+            {
+              "id": "3120833a-156d-464d-bfe1-f40eb427724d",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "35deafd6-5970-4e68-8572-96a8ea1b6b3b",
+          "frames": [
+            {
+              "id": "c644c2c8-25d6-43f7-9aa2-10fa1d8c581b",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "f8c483b8-bab8-4673-8dab-f0b9379801e2",
+          "frames": [
+            {
+              "id": "1c5a5bef-7571-4cd7-a22c-34e2093761e9",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "6a7f8121-4b1e-4eba-8015-4ae9d79a70d0",
+          "frames": [
+            {
+              "id": "95f969ca-06bc-4bec-bebb-2aa37deefedf",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "ce3915f8-5a83-4432-a67e-2906a3f26549",
+          "frames": [
+            {
+              "id": "11b0ba12-bd7c-402d-b0ac-a27e9cd1e75d",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "2f0abf92-edd6-4a81-b058-371544cf80d9",
+          "frames": [
+            {
+              "id": "ff60b39a-2c4d-4323-a583-3a77cca0780a",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "ae5c6bba-4e3d-40a2-873e-21a3d45fb5ae",
+          "frames": [
+            {
+              "id": "f1c5ee06-66d6-4590-a73d-de6c378cc072",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "b9e61a40-7eb1-42be-9b41-b2d482a3fe86",
+          "frames": [
+            {
+              "id": "78c7ae15-ff20-4017-be68-d82ba7b57298",
+              "tiles": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "numTiles": 0,
+  "canvasWidth": 32,
+  "canvasHeight": 32,
+  "boundsX": 0,
+  "boundsY": 0,
+  "boundsWidth": 16,
+  "boundsHeight": 16,
+  "animSpeed": 15
+}

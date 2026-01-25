@@ -1,0 +1,157 @@
+{
+  "_resourceType": "actor",
+  "id": "d12d5092-2716-441d-bab0-0e15fe715f5e",
+  "_index": 2,
+  "symbol": "actor_trap_spot_1",
+  "prefabId": "",
+  "name": "Camera Trap Spot",
+  "x": 25,
+  "y": 20,
+  "frame": 0,
+  "animate": false,
+  "spriteSheetId": "ede130e6-013a-42d1-a786-1aed3fd3cf32",
+  "paletteId": "",
+  "direction": "down",
+  "moveSpeed": 1,
+  "animSpeed": 63,
+  "isPinned": false,
+  "persistent": false,
+  "collisionGroup": "",
+  "prefabScriptOverrides": {},
+  "script": [
+    {
+      "id": "trap-interact",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": "Perfect spot for a camera trap!"
+      }
+    },
+    {
+      "id": "check-film",
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gt",
+          "valueA": {
+            "type": "variable",
+            "value": "FilmRolls"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 0
+          }
+        }
+      },
+      "children": {
+        "true": [
+          {
+            "id": "use-film",
+            "command": "EVENT_DEC_VALUE",
+            "args": {
+              "variable": "FilmRolls"
+            }
+          },
+          {
+            "id": "inc-traps",
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "TrapsSet"
+            }
+          },
+          {
+            "id": "trap-armed",
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": "Trap armed. Quietly hopeful..."
+            }
+          },
+          {
+            "id": "start-trap-timer",
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 3,
+              "frames": 30
+            }
+          },
+          {
+            "id": "random-outcome",
+            "command": "EVENT_RNG_SEED",
+            "args": {}
+          },
+          {
+            "id": "roll-result",
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "_R",
+              "value": {
+                "type": "rnd",
+                "value": {
+                  "type": "number",
+                  "value": 2
+                }
+              }
+            }
+          },
+          {
+            "id": "check-chase",
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "_R"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 1
+                }
+              }
+            },
+            "children": {
+              "true": [
+                {
+                  "id": "to-chase",
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": "POACHER SPOTTED! (Chase disabled for testing - they got away!)"
+                  }
+                }
+              ],
+              "false": [
+                {
+                  "id": "good-photo",
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": "An animal photo! (Ethical and photogenic.)"
+                  }
+                },
+                {
+                  "id": "inc-score",
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "Score"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "false": [
+          {
+            "id": "no-film",
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": "Out of film. The plot thickens... thinly."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "startScript": [],
+  "updateScript": [],
+  "hit1Script": [],
+  "hit2Script": [],
+  "hit3Script": []
+}

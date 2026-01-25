@@ -1,0 +1,97 @@
+{
+  "_resourceType": "actor",
+  "id": "566c8812-a204-45b5-b93a-c113c10c20de",
+  "_index": 0,
+  "symbol": "actor_shopkeeper",
+  "prefabId": "",
+  "name": "Shopkeeper",
+  "x": 10,
+  "y": 8,
+  "frame": 0,
+  "animate": false,
+  "spriteSheetId": "40dcd163-9f72-4861-8131-b01eb9baa000",
+  "paletteId": "",
+  "direction": "down",
+  "moveSpeed": 1,
+  "animSpeed": 15,
+  "isPinned": false,
+  "persistent": false,
+  "collisionGroup": "",
+  "prefabScriptOverrides": {},
+  "script": [
+    {
+      "id": "shop-greeting",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": "Shopkeeper: \"Welcome, Ranger! I trade film for photo points!\""
+      }
+    },
+    {
+      "id": "check-score",
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "Score"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 3
+          }
+        }
+      },
+      "children": {
+        "true": [
+          {
+            "id": "offer-trade",
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": "\"Trade 3 photo points for 1 film roll?\""
+            }
+          },
+          {
+            "id": "purchase",
+            "command": "EVENT_DEC_VALUE",
+            "args": {
+              "variable": "Score",
+              "value": {
+                "type": "number",
+                "value": 3
+              }
+            }
+          },
+          {
+            "id": "give-film",
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "FilmRolls"
+            }
+          },
+          {
+            "id": "purchase-success",
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": "\"Here's your film roll! Happy hunting!\""
+            }
+          }
+        ],
+        "false": [
+          {
+            "id": "not-enough",
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": "\"Sorry, you need 3 photo points to buy film.\""
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "startScript": [],
+  "updateScript": [],
+  "hit1Script": [],
+  "hit2Script": [],
+  "hit3Script": []
+}

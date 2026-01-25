@@ -1,0 +1,43 @@
+{
+  "_resourceType": "scene",
+  "id": "1b7f9ffd-2bbb-470b-9189-c2ac435d2a55",
+  "_index": 11,
+  "type": "TOPDOWN",
+  "name": "Ranger Supply Shop",
+  "symbol": "scene_supply_shop",
+  "x": 576,
+  "y": 75,
+  "width": 20,
+  "height": 18,
+  "backgroundId": "b340b9a2-2865-4e05-91c0-148846a693c8",
+  "tilesetId": "",
+  "paletteIds": [],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [
+    {
+      "id": "shop-welcome",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "Welcome to the Ranger Supply Shop!",
+          "Trade your wildlife photo points for film rolls!",
+          "Current Score: [Score] points",
+          "Film Rolls: [FilmRolls]"
+        ]
+      }
+    },
+    {
+      "id": "3ad0968d-0eea-4ead-a5f5-9fb89ed3de7f",
+      "command": "EVENT_MUSIC_PLAY",
+      "args": {
+        "musicId": "326b3cbc-1e3d-4a43-846f-c962ece2c317",
+        "loop": true
+      }
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": "003d+0f12+002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f8+002+0f8+009+0f!002+0f!0010+0f4+008+"
+}

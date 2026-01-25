@@ -1,0 +1,68 @@
+{
+  "_resourceType": "scene",
+  "id": "chase-road-rash",
+  "_index": 16,
+  "type": "SHMUP",
+  "name": "Road Rash Chase",
+  "symbol": "scene_chase_road_rash",
+  "x": 1200,
+  "y": 400,
+  "width": 56,
+  "height": 56,
+  "backgroundId": "053f83aa-a4e3-413b-98af-1bb0d0818ddc",
+  "tilesetId": "",
+  "paletteIds": [
+    "320dcbf4-2760-4e0d-8e2b-41970675034f",
+    "b550d28a-9cb7-4f19-82fb-d839725f2419"
+  ],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [
+    {
+      "id": "chase-init",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "CHASE SCENE!",
+          "Hold A to accelerate and close the gap!",
+          "Press B to lash at the poacher when close!",
+          "Knock them off their bike to win!"
+        ]
+      }
+    },
+    {
+      "id": "init-proximity",
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "_PX",
+        "value": {
+          "type": "number",
+          "value": 20
+        }
+      }
+    },
+    {
+      "id": "init-lash-ready",
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "_T",
+        "value": {
+          "type": "number",
+          "value": 1
+        }
+      }
+    },
+    {
+      "id": "chase-music",
+      "command": "EVENT_MUSIC_PLAY",
+      "args": {
+        "musicId": "9aac47ff-51d7-48bf-9f15-1ce01b3872a4",
+        "loop": true
+      }
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": ""
+}

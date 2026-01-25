@@ -1,0 +1,111 @@
+{
+  "_resourceType": "scene",
+  "id": "confiscate-victory",
+  "_index": 17,
+  "type": "TOPDOWN",
+  "name": "Confiscate Scene",
+  "symbol": "scene_confiscate",
+  "x": 1400,
+  "y": 400,
+  "width": 56,
+  "height": 56,
+  "backgroundId": "053f83aa-a4e3-413b-98af-1bb0d0818ddc",
+  "tilesetId": "",
+  "paletteIds": [
+    "320dcbf4-2760-4e0d-8e2b-41970675034f"
+  ],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [
+    {
+      "id": "victory-celebration",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "Ranger: \"Another snare off the map.\"",
+          "Prof. Tulip: \"Good work. Press calls you 'The Throttle of Justice.'\""
+        ]
+      }
+    },
+    {
+      "id": "check-peace",
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "PoachersCaught"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 5
+          }
+        }
+      },
+      "children": {
+        "true": [
+          {
+            "id": "peace-restored",
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Narrator: \"Peace returns to the reserve.\"",
+                "\"The animals can roam freely once again.\"",
+                "\"GAME COMPLETE! You are the Throttle of Justice!\""
+              ]
+            }
+          },
+          {
+            "id": "end-game",
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": "Thank you for playing Ranger Road Rash!"
+            }
+          }
+        ],
+        "false": [
+          {
+            "id": "more-work",
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": "Prof. Tulip: \"Still more engines to quiet.\""
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "restore-energy",
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "Energy",
+        "value": {
+          "type": "number",
+          "value": 10
+        }
+      }
+    },
+    {
+      "id": "back-to-savannah",
+      "command": "EVENT_SWITCH_SCENE",
+      "args": {
+        "sceneId": "94c18861-b352-4f49-a64d-52f2e3415077",
+        "x": {
+          "type": "number",
+          "value": 28
+        },
+        "y": {
+          "type": "number",
+          "value": 28
+        },
+        "direction": "down",
+        "fadeSpeed": "2"
+      }
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": ""
+}

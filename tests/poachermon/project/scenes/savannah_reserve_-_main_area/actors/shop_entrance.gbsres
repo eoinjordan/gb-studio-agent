@@ -1,0 +1,52 @@
+{
+  "_resourceType": "actor",
+  "id": "shop-entrance",
+  "_index": 10,
+  "symbol": "actor_shop_entrance",
+  "prefabId": "",
+  "name": "Shop Entrance",
+  "x": 40,
+  "y": 12,
+  "frame": 0,
+  "animate": false,
+  "spriteSheetId": "3939e8d2-3987-4a22-953e-f1d82134eccf",
+  "paletteId": "",
+  "direction": "down",
+  "moveSpeed": 1,
+  "animSpeed": 15,
+  "isPinned": false,
+  "persistent": false,
+  "collisionGroup": "",
+  "prefabScriptOverrides": {},
+  "script": [
+    {
+      "id": "shop-sign",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": "Ranger Supply Shop - Trade photos for film!"
+      }
+    },
+    {
+      "id": "enter-shop",
+      "command": "EVENT_SWITCH_SCENE",
+      "args": {
+        "sceneId": "1b7f9ffd-2bbb-470b-9189-c2ac435d2a55",
+        "x": {
+          "type": "number",
+          "value": 10
+        },
+        "y": {
+          "type": "number",
+          "value": 15
+        },
+        "direction": "up",
+        "fadeSpeed": "2"
+      }
+    }
+  ],
+  "startScript": [],
+  "updateScript": [],
+  "hit1Script": [],
+  "hit2Script": [],
+  "hit3Script": []
+}

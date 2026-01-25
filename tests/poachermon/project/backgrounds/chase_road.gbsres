@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "273f1367-63df-439b-b128-39ca7d01d24f",
+  "name": "chase_road",
+  "symbol": "bg_chase_road",
+  "width": 32,
+  "height": 18,
+  "imageWidth": 256,
+  "imageHeight": 144,
+  "filename": "chase_road.png",
+  "tileColors": "",
+  "autoColor": false
+}

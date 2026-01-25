@@ -1,0 +1,33 @@
+{
+  "_resourceType": "trigger",
+  "id": "shop-to-savannah",
+  "_index": 0,
+  "symbol": "trigger_shop_to_savannah",
+  "prefabId": "",
+  "name": "Shop Exit",
+  "x": 8,
+  "y": 17,
+  "width": 4,
+  "height": 1,
+  "prefabScriptOverrides": {},
+  "script": [
+    {
+      "id": "return-to-savannah",
+      "command": "EVENT_SWITCH_SCENE",
+      "args": {
+        "sceneId": "94c18861-b352-4f49-a64d-52f2e3415077",
+        "x": {
+          "type": "number",
+          "value": 40
+        },
+        "y": {
+          "type": "number",
+          "value": 15
+        },
+        "direction": "down",
+        "fadeSpeed": "2"
+      }
+    }
+  ],
+  "leaveScript": []
+}

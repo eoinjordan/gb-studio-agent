@@ -1,0 +1,50 @@
+{
+  "_resourceType": "scene",
+  "id": "94c18861-b352-4f49-a64d-52f2e3415077",
+  "_index": 10,
+  "type": "TOPDOWN",
+  "name": "Savannah Reserve - Main Area",
+  "symbol": "scene_savannah_main",
+  "x": 800.25,
+  "y": 30,
+  "width": 56,
+  "height": 56,
+  "backgroundId": "053f83aa-a4e3-413b-98af-1bb0d0818ddc",
+  "tilesetId": "",
+  "paletteIds": [
+    "320dcbf4-2760-4e0d-8e2b-41970675034f",
+    "b550d28a-9cb7-4f19-82fb-d839725f2419",
+    "036c985f-d774-4a94-813c-9ac43c52627f",
+    "",
+    "",
+    "2ebac764-bebb-4707-920b-2a975675b2cb"
+  ],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [
+    {
+      "id": "savannah-init",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "Savannah Reserve",
+          "Find wildlife, chase poachers!"
+        ],
+        "__section": "layout"
+      }
+    },
+    {
+      "id": "cd43ac8c-de3e-40c8-878e-0c0b66a9978f",
+      "command": "EVENT_MUSIC_PLAY",
+      "args": {
+        "musicId": "9aac47ff-51d7-48bf-9f15-1ce01b3872a4",
+        "loop": true
+      }
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": "",
+  "playerSpriteSheetId": "c0077dc6-76ba-4dbe-b659-cabe9af83111"
+}

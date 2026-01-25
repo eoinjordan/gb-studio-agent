@@ -1,0 +1,42 @@
+{
+  "id": "ranger_station",
+  "name": "Station",
+  "backgroundId": "savannah_map",
+  "type": "TopDown",
+  "actors": [
+    {
+      "id": "reception",
+      "spriteId": "ranger",
+      "x": 220,
+      "y": 48,
+      "onInteract": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Reception: \"Coffee\u2019s 90% caffeine, 10% bug repellent.\""
+          }
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Poster: \"Poaching is a crime. Road rash is karma.\""
+          }
+        },
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "savannah_map"
+          }
+        }
+      ]
+    }
+  ]
+}

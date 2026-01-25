@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "e0802cc0-16d2-413d-9e13-8843fdcf636a",
+  "name": "160",
+  "symbol": "bg_160",
+  "width": 32,
+  "height": 32,
+  "imageWidth": 256,
+  "imageHeight": 256,
+  "filename": "160.png",
+  "tileColors": "",
+  "autoColor": false
+}
