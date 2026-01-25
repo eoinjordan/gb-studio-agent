@@ -1,4 +1,4 @@
-## GB Studio Agentic Tool for creating GameBoy Games.
+## GB Studio Agentic MCP Server for creating GameBoy Games.
 
 Prompt to build out a template for your students kids or self to extend.
 
