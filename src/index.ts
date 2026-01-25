@@ -410,7 +410,8 @@ app.post('/font/create', (req: Request, res: Response) => {
     }
     data.fonts.push(font);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
-    res.json({ success: true, font });
+    // Always return the font object with id
+    res.json({ success: true, font: { ...font, id: font.id } });
   } catch (err) {
     let message = 'Unknown error';
     if (err && typeof err === 'object' && 'message' in err) {
