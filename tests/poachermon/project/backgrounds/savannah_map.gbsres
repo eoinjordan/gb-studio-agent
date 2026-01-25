@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "bacde79e-7318-4f76-b744-07001e019f9e",
+  "name": "savannah_map",
+  "symbol": "bg_savannah_map",
+  "width": 32,
+  "height": 32,
+  "imageWidth": 256,
+  "imageHeight": 256,
+  "filename": "savannah_map.png",
+  "tileColors": "",
+  "autoColor": false
+}

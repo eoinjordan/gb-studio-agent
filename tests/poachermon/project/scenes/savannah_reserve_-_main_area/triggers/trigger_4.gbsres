@@ -1,0 +1,23 @@
+{
+  "_resourceType": "trigger",
+  "id": "cd14ef9e-baa1-40fa-893e-097d7a924600",
+  "_index": 3,
+  "symbol": "trigger_3",
+  "prefabId": "",
+  "name": "",
+  "x": 0,
+  "y": 46,
+  "width": 1,
+  "height": 4,
+  "prefabScriptOverrides": {},
+  "script": [
+    {
+      "id": "disabled-path-trigger",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": "The path to town is blocked. Stay in the reserve to protect the animals!"
+      }
+    }
+  ],
+  "leaveScript": []
+}

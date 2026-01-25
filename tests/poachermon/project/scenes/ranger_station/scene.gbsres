@@ -1,0 +1,112 @@
+{
+  "_resourceType": "scene",
+  "id": "c22cad6f-1191-4623-911d-1ec9a7b52fe6",
+  "_index": 5,
+  "type": "TOPDOWN",
+  "name": "Ranger Station",
+  "symbol": "scene_ranger_station",
+  "x": 148,
+  "y": 526,
+  "width": 20,
+  "height": 18,
+  "backgroundId": "0af9ba31-7864-4664-9603-b211dc0f3793",
+  "tilesetId": "",
+  "paletteIds": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "default-sprite"
+  ],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [
+    {
+      "id": "7b6132c6-bb47-4c09-bc3d-0a33f53c43e7",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "Welcome to the Savannah Reserve Ranger Station!",
+          "You are RANGER JACK - defender of wildlife and bane of poachers everywhere!",
+          "Your mission: Set camera traps, catch poachers, and protect the animals.",
+          "Remember: Coffee's 90% caffeine, 10% bug repellent!"
+        ]
+      }
+    },
+    {
+      "id": "init-variables",
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "FilmRolls",
+        "value": {
+          "type": "number",
+          "value": 5
+        }
+      }
+    },
+    {
+      "id": "init-traps",
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "TrapsSet",
+        "value": {
+          "type": "number",
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": "init-caught",
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "PoachersCaught",
+        "value": {
+          "type": "number",
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": "init-energy",
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "Energy",
+        "value": {
+          "type": "number",
+          "value": 10
+        }
+      }
+    },
+    {
+      "id": "init-score",
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "Score",
+        "value": {
+          "type": "number",
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": "station-poster",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": "Station Poster: \"Poaching is a crime. Road rash is karma.\""
+      }
+    },
+    {
+      "id": "646647bb-e8b8-41cb-add9-e9d3531aceac",
+      "command": "EVENT_MUSIC_PLAY",
+      "args": {
+        "musicId": "326b3cbc-1e3d-4a43-846f-c962ece2c317",
+        "loop": true
+      }
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": ""
+}

@@ -1,0 +1,38 @@
+{
+  "_resourceType": "actor",
+  "id": "reception-clerk",
+  "_index": 0,
+  "symbol": "actor_reception_clerk",
+  "prefabId": "",
+  "name": "Reception Clerk",
+  "x": 8,
+  "y": 6,
+  "frame": 0,
+  "animate": false,
+  "spriteSheetId": "1ee47a36-85a5-4cb6-bb0f-7e0d76ef1f2b",
+  "paletteId": "",
+  "direction": "down",
+  "moveSpeed": 1,
+  "animSpeed": 15,
+  "isPinned": false,
+  "persistent": false,
+  "collisionGroup": "",
+  "prefabScriptOverrides": {},
+  "script": [
+    {
+      "id": "reception-talk",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "Reception: \"Coffee's 90% caffeine, 10% bug repellent.\"",
+          "\"The savannah map is through that door. Good hunting, Ranger!\""
+        ]
+      }
+    }
+  ],
+  "startScript": [],
+  "updateScript": [],
+  "hit1Script": [],
+  "hit2Script": [],
+  "hit3Script": []
+}

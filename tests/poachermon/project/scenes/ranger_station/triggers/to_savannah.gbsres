@@ -1,0 +1,40 @@
+{
+  "_resourceType": "trigger",
+  "id": "to-savannah",
+  "_index": 0,
+  "symbol": "trigger_to_savannah",
+  "prefabId": "",
+  "name": "To Savannah",
+  "x": 15,
+  "y": 0,
+  "width": 6,
+  "height": 3,
+  "prefabScriptOverrides": {},
+  "script": [
+    {
+      "id": "to-savannah-text",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": "Heading out to the savannah reserve..."
+      }
+    },
+    {
+      "id": "find-savannah-scene",
+      "command": "EVENT_SWITCH_SCENE",
+      "args": {
+        "sceneId": "94c18861-b352-4f49-a64d-52f2e3415077",
+        "x": {
+          "type": "number",
+          "value": 16
+        },
+        "y": {
+          "type": "number",
+          "value": 15
+        },
+        "direction": "up",
+        "fadeSpeed": "2"
+      }
+    }
+  ],
+  "leaveScript": []
+}

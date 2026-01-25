@@ -1,0 +1,248 @@
+{
+  "_resourceType": "actor",
+  "id": "ranger-bike",
+  "_index": 0,
+  "symbol": "actor_ranger_bike",
+  "prefabId": "",
+  "name": "Ranger Bike",
+  "x": 2,
+  "y": 9,
+  "frame": 0,
+  "animate": true,
+  "spriteSheetId": "e034721a-3dcb-44d4-9ba5-65bd2e6f7839",
+  "paletteId": "",
+  "direction": "right",
+  "moveSpeed": 2,
+  "animSpeed": 15,
+  "isPinned": false,
+  "persistent": false,
+  "collisionGroup": "",
+  "prefabScriptOverrides": {},
+  "script": [],
+  "startScript": [],
+  "updateScript": [
+    {
+      "id": "accelerate-input",
+      "command": "EVENT_IF_INPUT",
+      "args": {
+        "input": [
+          "a"
+        ]
+      },
+      "children": {
+        "true": [
+          {
+            "id": "gain-speed",
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "_PX"
+            }
+          },
+          {
+            "id": "drain-energy",
+            "command": "EVENT_DEC_VALUE",
+            "args": {
+              "variable": "Energy"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "lash-input",
+      "command": "EVENT_IF_INPUT",
+      "args": {
+        "input": [
+          "b"
+        ]
+      },
+      "children": {
+        "true": [
+          {
+            "id": "check-lash-ready",
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "variable",
+                  "value": "_T"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 0
+                }
+              }
+            },
+            "children": {
+              "true": [
+                {
+                  "id": "check-proximity",
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "gte",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "_PX"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 160
+                      }
+                    }
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "id": "successful-lash",
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": "CRACK! Direct hit!"
+                        }
+                      },
+                      {
+                        "id": "knockoff-poacher",
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": "Poacher: \"Not the road rash again!\""
+                        }
+                      },
+                      {
+                        "id": "victory",
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": "Ranger: \"Pull over before I quote Stobbart.\""
+                        }
+                      },
+                      {
+                        "id": "inc-caught",
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "PoachersCaught"
+                        }
+                      },
+                      {
+                        "id": "to-confiscate",
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "confiscate-victory",
+                          "x": {
+                            "type": "number",
+                            "value": 10
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 9
+                          },
+                          "direction": "down",
+                          "fadeSpeed": "2"
+                        }
+                      }
+                    ],
+                    "false": [
+                      {
+                        "id": "missed-lash",
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": "Lash misses! Get closer!"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "lash-cooldown",
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "_T",
+                    "value": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                },
+                {
+                  "id": "reset-lash-timer",
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 2,
+                    "frames": 30
+                  }
+                },
+                {
+                  "id": "lash-ready-again",
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "_T",
+                    "value": {
+                      "type": "number",
+                      "value": 1
+                    }
+                  }
+                }
+              ],
+              "false": [
+                {
+                  "id": "lash-not-ready",
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": "Lash recharging..."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "check-energy",
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "lte",
+          "valueA": {
+            "type": "variable",
+            "value": "Energy"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 0
+          }
+        }
+      },
+      "children": {
+        "true": [
+          {
+            "id": "exhausted",
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": "Too exhausted! The poacher escapes..."
+            }
+          },
+          {
+            "id": "back-to-savannah",
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "94c18861-b352-4f49-a64d-52f2e3415077",
+              "x": {
+                "type": "number",
+                "value": 28
+              },
+              "y": {
+                "type": "number",
+                "value": 28
+              },
+              "direction": "down",
+              "fadeSpeed": "2"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "hit1Script": [],
+  "hit2Script": [],
+  "hit3Script": []
+}

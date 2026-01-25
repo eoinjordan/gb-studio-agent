@@ -1,0 +1,57 @@
+{
+  "id": "cutscene_confiscate",
+  "name": "Confiscate",
+  "backgroundId": "savannah_map",
+  "type": "TopDown",
+  "actors": [],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Ranger: \"Another snare off the map.\""
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Prof. Tulip: \"Good work. Press calls you 'The Throttle of Justice.'\""
+          }
+        },
+        {
+          "command": "IF",
+          "args": {
+            "variable": "PoachersCaught",
+            "operation": ">=",
+            "value": 5
+          },
+          "children": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Narrator: \"Peace returns to the reserve.\""
+              }
+            }
+          ],
+          "else": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Prof. Tulip: \"Still more engines to quiet.\""
+              }
+            }
+          ]
+        },
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "savannah_map"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "4e5cc253-b220-4e92-b8b8-819d5ef78e5b",
+  "name": "160bg",
+  "symbol": "bg_160bg",
+  "width": 20,
+  "height": 20,
+  "imageWidth": 160,
+  "imageHeight": 160,
+  "filename": "160bg.png",
+  "tileColors": "",
+  "autoColor": false
+}

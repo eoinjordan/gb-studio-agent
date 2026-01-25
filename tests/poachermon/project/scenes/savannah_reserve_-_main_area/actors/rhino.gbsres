@@ -1,0 +1,42 @@
+{
+  "_resourceType": "actor",
+  "id": "abf9e863-28c0-4c03-bd4f-201ed2a055c2",
+  "_index": 1,
+  "symbol": "actor_rhino",
+  "prefabId": "",
+  "name": "Rhino",
+  "x": 35,
+  "y": 25,
+  "frame": 0,
+  "animate": false,
+  "spriteSheetId": "3939e8d2-3987-4a22-953e-f1d82134eccf",
+  "paletteId": "",
+  "direction": "down",
+  "moveSpeed": 0.5,
+  "animSpeed": 15,
+  "isPinned": false,
+  "persistent": false,
+  "collisionGroup": "",
+  "prefabScriptOverrides": {},
+  "script": [
+    {
+      "id": "rhino-quip",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": "Ranger: \"This feels like a Threepwood plan... without the plan.\""
+      }
+    },
+    {
+      "id": "rhino-reply",
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": "Rhino: \"At least you have a plan. Sort of.\""
+      }
+    }
+  ],
+  "startScript": [],
+  "updateScript": [],
+  "hit1Script": [],
+  "hit2Script": [],
+  "hit3Script": []
+}
