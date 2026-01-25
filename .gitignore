@@ -1,0 +1,42 @@
+# Node
+node_modules/
+dist/
+.env
+
+# Build
+*.tsbuildinfo
+*.log
+
+# Test output
+coverage/
+
+# GB Studio project files and assets
+*.gbsproj
+*.gbproject
+*.sav
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.gif
+*.mp3
+*.wav
+*.ogg
+*.mid
+*.csv
+assets/
+tests/poachermon/
+
+# GB Studio repo
+/gb-studio-latest/
+
+# Misc
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# OS
+*.tmp
+*.temp
