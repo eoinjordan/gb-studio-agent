@@ -1,5 +1,5 @@
 
-const actorRequest = require('supertest');
+import actorRequest from 'supertest';
 const actorApp = require('../src/index');
 import path from 'path';
 
