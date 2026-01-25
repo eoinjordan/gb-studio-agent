@@ -1,3 +1,7 @@
+## GB Studio Agentic Tool for creating GameBoy Games.
+
+Prompt to build out a template for your students kids or self to extend.
+
 
 ### Pong (Game Boy)
 ```
