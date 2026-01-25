@@ -3,7 +3,35 @@
 
 ![Build](https://github.com/eoinjordan/gb-studio-agent/actions/workflows/build.yml/badge.svg)
 ![Tests](https://github.com/eoinjordan/gb-studio-agent/actions/workflows/test.yml/badge.svg)
+
 [![npm version](https://img.shields.io/npm/v/gbstudio-claude-mcp.svg)](https://www.npmjs.com/package/gbstudio-claude-mcp)
+
+---
+
+## MCP Protocol Support
+
+This package supports the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). You can run the server in MCP stdio mode for use with Claude Desktop and other MCP clients:
+
+```sh
+node build/mcp.js
+```
+
+Or add this to your Claude Desktop MCP server configuration:
+
+```
+{
+   "mcpServers": {
+      "gbstudio-mcp": {
+         "command": "node",
+         "args": ["/absolute/path/to/build/mcp.js"]
+      }
+   }
+}
+```
+
+This enables full tool discovery and compatibility with any MCP-compliant client.
+
+---
 
 This project is a TypeScript MCP (Model Context Protocol) server for manipulating GB Studio projects. It exposes endpoints for project discovery, inventory, validation, and creation of game assets.
 
