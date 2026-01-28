@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "e6a9328b-d9be-4d13-8853-15d9eeb7571c",
+  "name": "Test Background",
+  "symbol": "bg_test_background",
+  "width": 20,
+  "height": 18,
+  "imageWidth": 160,
+  "imageHeight": 144,
+  "filename": "player_platform_kitty.png",
+  "tileColors": "",
+  "autoColor": false
+}

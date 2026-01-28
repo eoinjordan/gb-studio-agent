@@ -1,0 +1,83 @@
+{
+  "_resourceType": "sprite",
+  "id": "d2ecaff9-bb81-4cf6-b1eb-104a412e401e",
+  "name": "Chest Sprite",
+  "symbol": "sprite_chest_sprite",
+  "numFrames": 1,
+  "filename": "static.png",
+  "checksum": "228d1b4eab9534c670445e5b6c0a03cc411b6657",
+  "width": 16,
+  "height": 16,
+  "states": [
+    {
+      "id": "ee7536c1-5115-4727-be7d-0cece353f911",
+      "name": "",
+      "animationType": "multi",
+      "flipLeft": true,
+      "animations": [
+        {
+          "id": "19601c8d-0c65-4823-9f20-6e9a3acadb34",
+          "frames": [
+            {
+              "id": "a6dcb01d-a782-4f09-bea6-f6139995d311",
+              "tiles": [
+                {
+                  "id": "8adbac5a-8532-4bca-954e-ef8eda704cc2",
+                  "x": 0,
+                  "y": 0,
+                  "sliceX": 0,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "f3737efb-a359-4985-8fae-4280437b20be",
+                  "x": 8,
+                  "y": 0,
+                  "sliceX": 8,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "1b2d69e2-02f0-464b-8678-7dd22eadd78a",
+                  "x": 0,
+                  "y": 8,
+                  "sliceX": 0,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "796a5f25-bfde-4ab0-9927-d6a5352b9912",
+                  "x": 8,
+                  "y": 8,
+                  "sliceX": 8,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

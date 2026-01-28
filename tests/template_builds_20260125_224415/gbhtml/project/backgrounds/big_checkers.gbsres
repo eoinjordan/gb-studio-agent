@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "537f7d02-66e1-4f6b-b78f-c4ea52cd3a1d",
+  "name": "big checkers",
+  "symbol": "bg_big_checkers",
+  "width": 40,
+  "height": 36,
+  "imageWidth": 320,
+  "imageHeight": 288,
+  "filename": "big checkers.png",
+  "tileColors": "",
+  "autoColor": false
+}

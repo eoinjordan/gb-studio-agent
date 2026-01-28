@@ -1,0 +1,432 @@
+{
+  "id": "ranger_map",
+  "name": "Ranger Map",
+  "backgroundId": "savannah_map",
+  "type": "TopDown",
+  "actors": [
+    {
+      "id": "player_r",
+      "spriteId": "ranger",
+      "isPlayer": true,
+      "x": 24,
+      "y": 24,
+      "onUpdate": [
+        {
+          "command": "PLAYER_INPUT_MOVE",
+          "args": {
+            "speed": "2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "trap_ai_node",
+      "spriteId": "ai_node",
+      "x": 72,
+      "y": 72,
+      "onInteract": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Ranger: \"Arming Edge\u2011AI trap\u2026\""
+          }
+        },
+        {
+          "command": "IF",
+          "args": {
+            "variable": "FilmRolls",
+            "operation": ">",
+            "value": 0
+          },
+          "children": [
+            {
+              "command": "DEC_VARIABLE",
+              "args": {
+                "variable": "FilmRolls",
+                "value": 1
+              }
+            },
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "TrapsSet",
+                "value": 1
+              }
+            },
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Trap armed. Learning on the edge."
+              }
+            },
+            {
+              "command": "START_TIMER",
+              "args": {
+                "interval": "DetectionInterval"
+              },
+              "children": [
+                {
+                  "command": "RANDOM",
+                  "args": {
+                    "min": 0,
+                    "max": 100,
+                    "store": "_R"
+                  }
+                },
+                {
+                  "command": "IF",
+                  "args": {
+                    "variable": "_R",
+                    "operation": "<",
+                    "value": 60
+                  },
+                  "children": [
+                    {
+                      "command": "SWITCH_SCENE",
+                      "args": {
+                        "sceneId": "chase_scene"
+                      }
+                    }
+                  ],
+                  "else": [
+                    {
+                      "command": "RANDOM",
+                      "args": {
+                        "min": 0,
+                        "max": 2,
+                        "store": "_S"
+                      }
+                    },
+                    {
+                      "command": "IF",
+                      "args": {
+                        "variable": "_S",
+                        "operation": "==",
+                        "value": 0
+                      },
+                      "children": [
+                        {
+                          "command": "DISPLAY_TEXT",
+                          "args": {
+                            "text": "Saved: Elephant!"
+                          }
+                        },
+                        {
+                          "command": "IF",
+                          "args": {
+                            "variable": "SavedElephant",
+                            "operation": "==",
+                            "value": 0
+                          },
+                          "children": [
+                            {
+                              "command": "INC_VARIABLE",
+                              "args": {
+                                "variable": "AnimalsSaved",
+                                "value": 1
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "command": "SET_VARIABLE",
+                          "args": {
+                            "variable": "SavedElephant",
+                            "value": 1
+                          }
+                        },
+                        {
+                          "command": "INC_VARIABLE",
+                          "args": {
+                            "variable": "ModelAccuracy",
+                            "value": 1
+                          }
+                        },
+                        {
+                          "command": "DISPLAY_TEXT",
+                          "args": {
+                            "text": "SaveDex updated."
+                          }
+                        }
+                      ],
+                      "else": [
+                        {
+                          "command": "IF",
+                          "args": {
+                            "variable": "_S",
+                            "operation": "==",
+                            "value": 1
+                          },
+                          "children": [
+                            {
+                              "command": "DISPLAY_TEXT",
+                              "args": {
+                                "text": "Saved: Rhino!"
+                              }
+                            },
+                            {
+                              "command": "IF",
+                              "args": {
+                                "variable": "SavedRhino",
+                                "operation": "==",
+                                "value": 0
+                              },
+                              "children": [
+                                {
+                                  "command": "INC_VARIABLE",
+                                  "args": {
+                                    "variable": "AnimalsSaved",
+                                    "value": 1
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "command": "SET_VARIABLE",
+                              "args": {
+                                "variable": "SavedRhino",
+                                "value": 1
+                              }
+                            },
+                            {
+                              "command": "INC_VARIABLE",
+                              "args": {
+                                "variable": "ModelAccuracy",
+                                "value": 1
+                              }
+                            },
+                            {
+                              "command": "DISPLAY_TEXT",
+                              "args": {
+                                "text": "SaveDex updated."
+                              }
+                            }
+                          ],
+                          "else": [
+                            {
+                              "command": "DISPLAY_TEXT",
+                              "args": {
+                                "text": "Saved: Bird!"
+                              }
+                            },
+                            {
+                              "command": "IF",
+                              "args": {
+                                "variable": "SavedBird",
+                                "operation": "==",
+                                "value": 0
+                              },
+                              "children": [
+                                {
+                                  "command": "INC_VARIABLE",
+                                  "args": {
+                                    "variable": "AnimalsSaved",
+                                    "value": 1
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "command": "SET_VARIABLE",
+                              "args": {
+                                "variable": "SavedBird",
+                                "value": 1
+                              }
+                            },
+                            {
+                              "command": "INC_VARIABLE",
+                              "args": {
+                                "variable": "ModelAccuracy",
+                                "value": 1
+                              }
+                            },
+                            {
+                              "command": "DISPLAY_TEXT",
+                              "args": {
+                                "text": "SaveDex updated."
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Out of film. Visit HQ."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "to_savedex",
+      "spriteId": "bird",
+      "x": 220,
+      "y": 110,
+      "onInteract": [
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "savedex"
+          }
+        }
+      ]
+    },
+    {
+      "id": "to_tutorial",
+      "spriteId": "elephant",
+      "x": 210,
+      "y": 60,
+      "onInteract": [
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "tutorial_ai"
+          }
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "FilmRolls",
+            "value": 3
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "TrapsSet",
+            "value": 0
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "PoachersCaught",
+            "value": 0
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "AnimalsSaved",
+            "value": 0
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "SavedElephant",
+            "value": 0
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "SavedRhino",
+            "value": 0
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "SavedBird",
+            "value": 0
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "Money",
+            "value": 0
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "FamilyHealth",
+            "value": 50
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "Empathy",
+            "value": 50
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "ModelAccuracy",
+            "value": 70
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "DetectionInterval",
+            "value": 180
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Prof. Tulip: \"Protect first. Learn always.\""
+          }
+        },
+        {
+          "command": "IF",
+          "args": {
+            "variable": "ModelAccuracy",
+            "operation": ">=",
+            "value": 90
+          },
+          "children": [
+            {
+              "command": "SET_VARIABLE",
+              "args": {
+                "variable": "DetectionInterval",
+                "value": 120
+              }
+            }
+          ],
+          "else": [
+            {
+              "command": "IF",
+              "args": {
+                "variable": "ModelAccuracy",
+                "operation": ">=",
+                "value": 80
+              },
+              "children": [
+                {
+                  "command": "SET_VARIABLE",
+                  "args": {
+                    "variable": "DetectionInterval",
+                    "value": 150
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

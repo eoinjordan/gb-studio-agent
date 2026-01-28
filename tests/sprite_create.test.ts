@@ -10,7 +10,7 @@ describe('Sprite Create Endpoint', () => {
       name: 'Test Sprite',
       numFrames: 3,
       type: 'actor',
-      filename: 'test.png',
+      filename: 'cat.png',
       id: undefined,
     };
     const res = await spriteRequest(spriteApp)

@@ -1,0 +1,83 @@
+{
+  "_resourceType": "sprite",
+  "id": "67593b51-ae6d-4b21-ac56-5a571f19e6bc",
+  "name": "Chest Sprite",
+  "symbol": "sprite_chest_sprite",
+  "numFrames": 1,
+  "filename": "static.png",
+  "checksum": "228d1b4eab9534c670445e5b6c0a03cc411b6657",
+  "width": 16,
+  "height": 16,
+  "states": [
+    {
+      "id": "976eb9e7-4192-44bb-8cc9-098c8627f277",
+      "name": "",
+      "animationType": "multi",
+      "flipLeft": true,
+      "animations": [
+        {
+          "id": "66bb68c3-05ca-47a9-a3a8-6f910c8e338f",
+          "frames": [
+            {
+              "id": "7d8b80de-0f63-4cdc-8278-7526c90dd244",
+              "tiles": [
+                {
+                  "id": "bae5657c-2db5-4f67-a2a3-40a6ce98e040",
+                  "x": 0,
+                  "y": 0,
+                  "sliceX": 0,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "e00d8939-6a43-4dd1-adf1-f0f3a37bf1df",
+                  "x": 8,
+                  "y": 0,
+                  "sliceX": 8,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "e34a8794-9a65-4d8c-b2de-59820ff7fe50",
+                  "x": 0,
+                  "y": 8,
+                  "sliceX": 0,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "4cca816e-10dd-4130-829e-056317c22e97",
+                  "x": 8,
+                  "y": 8,
+                  "sliceX": 8,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

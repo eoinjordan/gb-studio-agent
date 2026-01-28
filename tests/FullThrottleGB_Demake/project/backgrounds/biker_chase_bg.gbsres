@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "ce109fd6-c99e-47dd-9d00-cd93ae7a7a03",
+  "name": "biker_chase_bg",
+  "symbol": "bg_biker_chase_bg",
+  "width": 20,
+  "height": 18,
+  "imageWidth": 160,
+  "imageHeight": 144,
+  "filename": "biker_chase_bg.png",
+  "tileColors": "",
+  "autoColor": false
+}

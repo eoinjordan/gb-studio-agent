@@ -1,0 +1,22 @@
+{
+  "_resourceType": "scene",
+  "id": "438ad112-da00-4d8e-9d88-45787e674d8c",
+  "_index": 17,
+  "name": "Scene 18",
+  "backgroundId": "1da35172-aea4-40b4-8215-7992d9245b34",
+  "tilesetId": "",
+  "width": 20,
+  "height": 18,
+  "type": "TOPDOWN",
+  "paletteIds": [],
+  "spritePaletteIds": [],
+  "collisions": "",
+  "autoFadeSpeed": 1,
+  "symbol": "scene_18",
+  "x": 1444.800048828125,
+  "y": 338,
+  "script": [],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": []
+}

@@ -1,0 +1,93 @@
+{
+  "_resourceType": "sprite",
+  "id": "a31cfc59-61f0-488d-a1f9-69e18ba1a8c3",
+  "name": "Test Sprite",
+  "symbol": "sprite_test_sprite",
+  "numFrames": 3,
+  "filename": "test.png",
+  "checksum": "86df89e0ad5c40b8158f59f34eff024cf7d84432",
+  "width": 160,
+  "height": 140,
+  "states": [
+    {
+      "id": "513d4359-f6d5-45b1-b230-df735e809db0",
+      "name": "",
+      "animationType": "multi_movement",
+      "flipLeft": true,
+      "animations": [
+        {
+          "id": "878a7880-3cb6-415a-a4a6-324434681411",
+          "frames": [
+            {
+              "id": "ad128540-6491-4361-a77d-2c578f74c629",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "79e304ae-1fad-41c5-8b5f-4c455abca37d",
+          "frames": [
+            {
+              "id": "2656c8dd-82e1-48e5-8c8d-45a851631968",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "ffa7f69a-1dba-4e01-af14-1149aca4ddc0",
+          "frames": [
+            {
+              "id": "ef7dce0d-0c1c-4551-a1b0-87401a74b2d6",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "4cf97411-6a9e-43e3-9075-bacd8b1a8fb6",
+          "frames": [
+            {
+              "id": "6a9871f1-3214-4b64-a493-0ae2e376380a",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "9b20a972-79c4-40f5-9a65-1a4aea62b47a",
+          "frames": [
+            {
+              "id": "e8a16449-7011-4606-82fb-5496229c7827",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "bc3dd2a3-a83d-4dab-a3c1-9cecb4ecba8c",
+          "frames": [
+            {
+              "id": "13139000-dc9a-4bd4-aa94-e30757ec3d6f",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "9e62cbc4-063e-4b11-9e62-2703f9053c6f",
+          "frames": [
+            {
+              "id": "dbf08338-48e4-4dc9-9d94-40dd0bc38dd0",
+              "tiles": []
+            }
+          ]
+        },
+        {
+          "id": "38b43692-054a-481c-b28d-bc1205f77b80",
+          "frames": [
+            {
+              "id": "895c8413-ed66-41b5-8a69-8cf845bbce4c",
+              "tiles": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

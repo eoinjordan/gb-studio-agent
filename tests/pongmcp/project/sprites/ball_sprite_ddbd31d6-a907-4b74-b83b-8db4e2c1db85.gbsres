@@ -1,0 +1,83 @@
+{
+  "_resourceType": "sprite",
+  "id": "ddbd31d6-a907-4b74-b83b-8db4e2c1db85",
+  "name": "Ball Sprite",
+  "symbol": "sprite_ball_sprite",
+  "numFrames": 1,
+  "filename": "static.png",
+  "checksum": "ed08d198cc3dd48f9bfba000769904ae41b36db8",
+  "width": 16,
+  "height": 16,
+  "states": [
+    {
+      "id": "56d84707-9608-496b-b4cb-774d6bf03d28",
+      "name": "",
+      "animationType": "multi",
+      "flipLeft": true,
+      "animations": [
+        {
+          "id": "b8a426b2-1c9b-46ce-becd-aad1d65c77b9",
+          "frames": [
+            {
+              "id": "4dd5a063-4bd8-4680-a36a-f203f9931023",
+              "tiles": [
+                {
+                  "id": "2ddfc511-cfe0-4a6f-bec4-463e33175d6a",
+                  "x": 0,
+                  "y": 0,
+                  "sliceX": 0,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "3fd8cf4f-1912-49c1-86e5-2aa97caccf36",
+                  "x": 8,
+                  "y": 0,
+                  "sliceX": 8,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "9f07a151-693b-47c2-b03b-58ec3aeb427b",
+                  "x": 0,
+                  "y": 8,
+                  "sliceX": 0,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "3b6551d6-7279-4141-bfdf-f354d3b33bf2",
+                  "x": 8,
+                  "y": 8,
+                  "sliceX": 8,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "id": "chase_scene",
+  "name": "Chase",
+  "backgroundId": "chase_road",
+  "type": "Platformer",
+  "actors": [
+    {
+      "id": "player_bike",
+      "spriteId": "motorbike",
+      "x": 20,
+      "y": 80,
+      "onUpdate": [
+        {
+          "command": "IF_INPUT_HELD",
+          "args": {
+            "button": "A"
+          },
+          "children": [
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "_PX",
+                "value": 2
+              }
+            }
+          ]
+        },
+        {
+          "command": "IF_INPUT_PRESSED",
+          "args": {
+            "button": "B"
+          },
+          "children": [
+            {
+              "command": "RANDOM",
+              "args": {
+                "min": 0,
+                "max": 2,
+                "store": "_T"
+              }
+            },
+            {
+              "command": "IF",
+              "args": {
+                "variable": "_T",
+                "operation": "==",
+                "value": 0
+              },
+              "children": [
+                {
+                  "command": "DISPLAY_TEXT",
+                  "args": {
+                    "text": "Ranger: \"You call that a getaway?\""
+                  }
+                }
+              ]
+            },
+            {
+              "command": "IF",
+              "args": {
+                "variable": "_T",
+                "operation": "==",
+                "value": 1
+              },
+              "children": [
+                {
+                  "command": "DISPLAY_TEXT",
+                  "args": {
+                    "text": "Ranger: \"Your bike sounds nervous.\""
+                  }
+                }
+              ]
+            },
+            {
+              "command": "IF",
+              "args": {
+                "variable": "_T",
+                "operation": "==",
+                "value": 2
+              },
+              "children": [
+                {
+                  "command": "DISPLAY_TEXT",
+                  "args": {
+                    "text": "Ranger: \"Tell Ben I kept it tasteful.\""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "command": "IF",
+          "args": {
+            "variable": "_PX",
+            "operation": ">=",
+            "value": 180
+          },
+          "children": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Ranger: \"Pull over before I quote Stobbart.\""
+              }
+            },
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Poacher: \"Not the Broken Sword speeches!\""
+              }
+            },
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "PoachersCaught",
+                "value": 1
+              }
+            },
+            {
+              "command": "SWITCH_SCENE",
+              "args": {
+                "sceneId": "cutscene_confiscate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poacher_bike",
+      "spriteId": "poacher",
+      "x": 180,
+      "y": 80
+    }
+  ],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "(A) accelerate \u2022 (B) remark wittily"
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "_PX",
+            "value": 20
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "_resourceType": "background",
+  "id": "53af438e-b859-424f-978f-ddced7c97360",
+  "name": "A_pixel_art_title_screen_for_a_fictional_Game_Boy_",
+  "symbol": "bg_a_pixel_art_title_screen",
+  "width": 128,
+  "height": 128,
+  "imageWidth": 1024,
+  "imageHeight": 1024,
+  "filename": "A_pixel_art_title_screen_for_a_fictional_Game_Boy_.png",
+  "tileColors": ""
+}

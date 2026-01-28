@@ -12,7 +12,7 @@ describe('Background Create Endpoint', () => {
       height: 18,
       imageWidth: 160,
       imageHeight: 144,
-      filename: 'test.png',
+      filename: 'cave.png',
       id: undefined,
     };
     const res = await backgroundRequest(backgroundApp)

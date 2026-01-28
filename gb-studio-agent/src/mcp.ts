@@ -104,7 +104,7 @@ function registerMcpTool({
     { description, inputSchema },
     async (args: any) => {
       const result = await callLocalEndpoint(endpoint, args);
-      return { content: [{ type: "text", text: JSON.stringify(result) }] };
+      return { content: [{ type: "text" as const, text: JSON.stringify(result) }] };
     }
   );
 }

@@ -1,0 +1,111 @@
+{
+  "_version": "4.3.0",
+  "name": "Biker Chase",
+  "notes": "Converted from Space Battle -> Motorbike chase. Auto-transitions to Bar on win.",
+  "background": "assets/backgrounds/biker_chase_bg.png",
+  "type": "topdown",
+  "id": "scene_biker_chase_auto",
+  "width": 20,
+  "height": 18,
+  "actors": [
+    {
+      "id": "actor_player_bike",
+      "name": "Player_Bike",
+      "spriteSheetId": "SPRITE_PLAYER_BIKE",
+      "x": 80,
+      "y": 112,
+      "bounds": [
+        0,
+        0,
+        8,
+        8
+      ],
+      "moveSpeed": 1,
+      "isPlayer": true,
+      "scripts": {
+        "onInteract": [
+          {
+            "command": "TEXT",
+            "args": {
+              "text": "Press A to rev. Press B to regret."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "actor_rival_biker",
+      "name": "Rival_Biker",
+      "spriteSheetId": "SPRITE_RIVAL_BIKE",
+      "x": 80,
+      "y": 24,
+      "bounds": [
+        0,
+        0,
+        8,
+        8
+      ],
+      "moveSpeed": 1,
+      "scripts": {
+        "onUpdate": [
+          {
+            "command": "MOVE_TOWARDS",
+            "args": {
+              "actorId": "actor_player_bike",
+              "speed": 1
+            }
+          },
+          {
+            "command": "IF_COLLIDE",
+            "args": {
+              "withActorId": "actor_player_bike"
+            },
+            "children": [
+              {
+                "command": "TEXT",
+                "args": {
+                  "text": "You just kissed the asphalt."
+                }
+              },
+              {
+                "command": "RESTART_SCENE"
+              }
+            ]
+          }
+        ],
+        "onInteract": [
+          {
+            "command": "TEXT",
+            "args": {
+              "text": "You call that a bike? I've seen faster lawnmowers!"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "triggers": [
+    {
+      "id": "trigger_finish",
+      "x": 0,
+      "y": 0,
+      "w": 160,
+      "h": 16,
+      "scripts": [
+        {
+          "command": "TEXT",
+          "args": {
+            "text": "Rival lost in your dust."
+          }
+        },
+        {
+          "command": "SCENE_PUSH",
+          "args": {
+            "sceneId": "scene_bar_kickstand"
+          }
+        }
+      ]
+    }
+  ],
+  "music": "MUSIC_BIKER_ANTHEM"
+}

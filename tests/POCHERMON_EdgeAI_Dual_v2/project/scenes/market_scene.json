@@ -1,0 +1,179 @@
+{
+  "id": "market_scene",
+  "name": "Market",
+  "backgroundId": "market",
+  "type": "TopDown",
+  "actors": [
+    {
+      "id": "vendor",
+      "spriteId": "poacher",
+      "x": 64,
+      "y": 92,
+      "onInteract": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Vendor: \"Got anything? Prices are down.\""
+          }
+        },
+        {
+          "command": "IF",
+          "args": {
+            "variable": "Bagged",
+            "operation": ">",
+            "value": 0
+          },
+          "children": [
+            {
+              "command": "DEC_VARIABLE",
+              "args": {
+                "variable": "Bagged",
+                "value": 1
+              }
+            },
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "Money",
+                "value": 10
+              }
+            },
+            {
+              "command": "DEC_VARIABLE",
+              "args": {
+                "variable": "Empathy",
+                "value": 1
+              }
+            },
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Sold. Money +10"
+              }
+            }
+          ],
+          "else": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Nothing to sell."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "release",
+      "spriteId": "ranger",
+      "x": 160,
+      "y": 92,
+      "onInteract": [
+        {
+          "command": "IF",
+          "args": {
+            "variable": "Bagged",
+            "operation": ">",
+            "value": 0
+          },
+          "children": [
+            {
+              "command": "DEC_VARIABLE",
+              "args": {
+                "variable": "Bagged",
+                "value": 1
+              }
+            },
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "Empathy",
+                "value": 3
+              }
+            },
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "You let it go. Empathy +3"
+              }
+            },
+            {
+              "command": "IF",
+              "args": {
+                "variable": "Empathy",
+                "operation": ">=",
+                "value": 80
+              },
+              "children": [
+                {
+                  "command": "DISPLAY_TEXT",
+                  "args": {
+                    "text": "A ranger notices. \"There\u2019s another way\u2026\""
+                  }
+                },
+                {
+                  "command": "SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "shared_future"
+                  }
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Nothing to release."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Market: Sell to survive\u2026 or choose compassion."
+          }
+        },
+        {
+          "command": "IF",
+          "args": {
+            "variable": "Money",
+            "operation": ">=",
+            "value": 30
+          },
+          "children": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "You can afford medicine. FamilyHealth +10"
+              }
+            },
+            {
+              "command": "DEC_VARIABLE",
+              "args": {
+                "variable": "Money",
+                "value": 30
+              }
+            },
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "FamilyHealth",
+                "value": 10
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

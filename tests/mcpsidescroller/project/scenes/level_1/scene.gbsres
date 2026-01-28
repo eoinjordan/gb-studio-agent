@@ -1,0 +1,23 @@
+{
+  "_resourceType": "scene",
+  "id": "scene_1769385874612",
+  "_index": 3,
+  "type": "PLATFORM",
+  "name": "Level 1",
+  "symbol": "scene_level_1",
+  "x": 0,
+  "y": 0,
+  "width": 40,
+  "height": 18,
+  "backgroundId": "68220a31-28a9-4555-8cd5-5cc33c324e18",
+  "tilesetId": "",
+  "colorModeOverride": "none",
+  "paletteIds": [],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": ""
+}
