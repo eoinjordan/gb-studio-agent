@@ -3,6 +3,7 @@
 # Node
 node_modules/
 dist/
+build/
 .env
 
 # Build
@@ -42,6 +43,10 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# MCP registry / tooling
+mcp-publisher.exe
+.mcpregistry_*
 
 # OS
 *.tmp

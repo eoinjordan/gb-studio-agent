@@ -1,0 +1,14 @@
+{
+  "id": "gbstudio-claude-mcp",
+  "name": "GB Studio MCP Skill Pack",
+  "description": "Moltbot skill for the GB Studio project server.",
+  "version": "1.0.4",
+  "skills": [
+    "skills"
+  ],
+  "configSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}
