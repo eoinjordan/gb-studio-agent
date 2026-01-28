@@ -1,12 +1,9 @@
 ## GB Studio Agentic MCP Server for creating GameBoy Games.
 
 Prompt to build out a template for your students kids or self to extend.
-<img width="1080" height="2640" alt="Screenshot_20260128-214729 WhatsApp" src="https://github.com/user-attachments/assets/8035e5c3-a2a7-4be8-ad51-fec2c89ab048" />
+<img width="500" height="1000" alt="Screenshot_20260128-214729 WhatsApp" src="https://github.com/user-attachments/assets/8035e5c3-a2a7-4be8-ad51-fec2c89ab048" />
 
 ![gif](https://github.com/user-attachments/assets/6d566f6a-921e-49ac-8e74-b012e0b7d44f)
-![hole](https://github.com/user-attachments/assets/e9acd3db-21cd-4171-b4c9-f4881f6cb508)
-![poaceh](https://github.com/user-attachments/assets/5273503c-14a3-4208-91b8-b680bea72a93)
-![gb](https://github.com/user-attachments/assets/f8322ffa-02ce-4f64-a29c-a41e8b3b3fdf)
 
 ### Pong (Game Boy)
 ```
