@@ -3,7 +3,7 @@
   "name": "io.github.eoinjordan/gbstudio-claude-mcp",
   "title": "GB Studio MCP Server",
   "description": "Create and modify GB Studio projects with MCP tools for scenes, actors, assets, and validation.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "repository": {
     "url": "https://github.com/eoinjordan/gb-studio-agent",
     "source": "github"
@@ -12,7 +12,7 @@
     {
       "registryType": "npm",
       "identifier": "gbstudio-claude-mcp",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "transport": {
         "type": "stdio"
       },

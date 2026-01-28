@@ -2,7 +2,7 @@
   "id": "gbstudio-claude-mcp",
   "name": "GB Studio MCP Skill Pack",
   "description": "Clawdbot skill for the GB Studio project server.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "skills": [
     "skills"
   ],
