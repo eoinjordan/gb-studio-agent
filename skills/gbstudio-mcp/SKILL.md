@@ -1,7 +1,7 @@
 ---
 name: gbstudio-mcp
 description: Generate and modify GB Studio projects via the GB Studio MCP server.
-metadata: {"moltbot":{"requires":{"bins":["node"],"env":[],"config":[]},"homepage":"https://github.com/eoinjordan/gb-studio-agent"},"clawdbot":{"requires":{"bins":["node"],"env":[],"config":[]},"homepage":"https://github.com/eoinjordan/gb-studio-agent"}}
+metadata: {"moltbot":{"requires":{"anyBins":["node","node.exe"],"env":[],"config":[]},"homepage":"https://github.com/eoinjordan/gb-studio-agent"},"clawdbot":{"requires":{"anyBins":["node","node.exe"],"env":[],"config":[]},"homepage":"https://github.com/eoinjordan/gb-studio-agent"}}
 ---
 
 # GB Studio MCP Skill
@@ -36,6 +36,8 @@ Start the MCP stdio server (after building it):
 
 If installed globally, you can run:
 - `node $(npm root -g)/gbstudio-claude-mcp/build/mcp.js`
+
+If the REST API is running on a non-default port, set `GBSTUDIO_API_URL` (full URL) or `GBSTUDIO_API_PORT` (port number) before launching the MCP stdio server.
 
 ## Tool usage pattern
 1) Find project: start from a user-provided directory.

@@ -88,7 +88,7 @@ npm run build:mcp
 node build/mcp.js
 ```
 
-The MCP stdio server proxies to the local REST API on http://localhost:3000, so start the REST server first:
+The MCP stdio server proxies to the local REST API on http://localhost:3000, so start the REST server first. To use a different port, set `GBSTUDIO_API_URL` (full URL) or `GBSTUDIO_API_PORT` (port number):
 
 ```sh
 gbstudio-claude-mcp

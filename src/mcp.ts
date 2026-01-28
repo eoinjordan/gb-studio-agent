@@ -3,10 +3,19 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import axios from "axios";
 
+const apiBaseUrl = (() => {
+  const explicit = process.env.GBSTUDIO_API_URL?.trim();
+  if (explicit) {
+    return explicit.replace(/\/+$/, "");
+  }
+  const port = process.env.GBSTUDIO_API_PORT ?? process.env.PORT ?? "3000";
+  return `http://localhost:${port}`;
+})();
+
 // Helper to call the local HTTP server endpoints.
 async function callLocalEndpoint(path: string, body: unknown) {
   try {
-    const res = await axios.post(`http://localhost:3000${path}`, body);
+    const res = await axios.post(`${apiBaseUrl}${path}`, body);
     return res.data;
   } catch (err: any) {
     return { error: err?.response?.data || err.message };
@@ -15,7 +24,7 @@ async function callLocalEndpoint(path: string, body: unknown) {
 
 const server = new McpServer({
   name: "gbstudio-claude-mcp",
-  version: "1.0.4",
+  version: "1.0.5",
 });
 
 // Register MCP tools for key endpoints.
