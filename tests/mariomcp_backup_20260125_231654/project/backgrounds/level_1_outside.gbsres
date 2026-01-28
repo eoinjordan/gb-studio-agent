@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "91b8330a-f83a-46e0-850a-434762e2cac0",
+  "name": "Level 1 Outside",
+  "symbol": "bg_level_1_outside",
+  "width": 20,
+  "height": 18,
+  "imageWidth": 160,
+  "imageHeight": 144,
+  "filename": "outside.png",
+  "tileColors": "",
+  "autoColor": false
+}

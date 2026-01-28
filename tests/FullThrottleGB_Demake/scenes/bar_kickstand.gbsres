@@ -1,0 +1,81 @@
+{
+  "_version": "4.3.0",
+  "name": "The Kickstand",
+  "notes": "Replaces Top House with bar interior.",
+  "background": "assets/backgrounds/bar_kickstand_bg.png",
+  "type": "topdown",
+  "id": "scene_bar_kickstand",
+  "width": 20,
+  "height": 18,
+  "actors": [
+    {
+      "id": "actor_bartender",
+      "name": "Bartender_Quinn",
+      "spriteSheetId": "SPRITE_BARTENDER",
+      "x": 80,
+      "y": 68,
+      "scripts": {
+        "onInteract": [
+          {
+            "command": "TEXT",
+            "args": {
+              "text": "Grease or beer? Same price, different flavor."
+            }
+          },
+          {
+            "command": "CHOICE",
+            "args": {
+              "choices": [
+                "Grease",
+                "Beer",
+                "Both (regret)"
+              ]
+            },
+            "children": [
+              [
+                {
+                  "command": "TEXT",
+                  "args": {
+                    "text": "Your engine purrs, your arteries cry."
+                  }
+                }
+              ],
+              [
+                {
+                  "command": "TEXT",
+                  "args": {
+                    "text": "Crisp. Like fresh tires on gravel."
+                  }
+                }
+              ],
+              [
+                {
+                  "command": "TEXT",
+                  "args": {
+                    "text": "Bold choice. Maybe save first."
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "actor_exit",
+      "name": "Exit_To_Town",
+      "spriteSheetId": "SPRITE_DOOR",
+      "x": 152,
+      "y": 128,
+      "scripts": {
+        "onInteract": [
+          {
+            "command": "SCENE_POP"
+          }
+        ]
+      }
+    }
+  ],
+  "triggers": [],
+  "music": "MUSIC_BAR_JUKEBOX"
+}

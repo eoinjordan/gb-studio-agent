@@ -1,0 +1,25 @@
+{
+  "_resourceType": "scene",
+  "id": "scene_1769385875044",
+  "_index": 20,
+  "type": "TOPDOWN",
+  "name": "Maze",
+  "symbol": "scene_maze",
+  "x": 575,
+  "y": 275,
+  "width": 20,
+  "height": 18,
+  "backgroundId": "1da35172-aea4-40b4-8215-7992d9245b34",
+  "tilesetId": "",
+  "colorModeOverride": "none",
+  "paletteIds": [
+    "444c886c-6214-48d7-8e3c-4dca4f65dec7"
+  ],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": "003d+0f12+002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f8+002+0f8+009+0f!002+0f!008+"
+}

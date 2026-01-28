@@ -1,0 +1,23 @@
+{
+  "_resourceType": "trigger",
+  "id": "dffe092c-bd4f-4be0-aa37-c0998ab0ca9f",
+  "_index": 0,
+  "symbol": "trigger_30",
+  "prefabId": "",
+  "name": "",
+  "x": 56,
+  "y": 17,
+  "width": 3,
+  "height": 1,
+  "prefabScriptOverrides": {},
+  "script": [
+    {
+      "command": "EVENT_PLATFORMER_STATE_SET",
+      "args": {
+        "state": "blank"
+      },
+      "id": "253b873e-076b-4ce2-982a-dd2eaee32dd2"
+    }
+  ],
+  "leaveScript": []
+}

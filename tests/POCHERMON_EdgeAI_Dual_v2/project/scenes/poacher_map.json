@@ -1,0 +1,146 @@
+{
+  "id": "poacher_map",
+  "name": "Poacher Map",
+  "backgroundId": "poacher_map",
+  "type": "TopDown",
+  "actors": [
+    {
+      "id": "player_p",
+      "spriteId": "poacher",
+      "isPlayer": true,
+      "x": 28,
+      "y": 28,
+      "onUpdate": [
+        {
+          "command": "PLAYER_INPUT_MOVE",
+          "args": {
+            "speed": "2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "to_market",
+      "spriteId": "poacher",
+      "x": 56,
+      "y": 120,
+      "onInteract": [
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "market_scene"
+          }
+        }
+      ]
+    },
+    {
+      "id": "to_tutorial",
+      "spriteId": "bird",
+      "x": 200,
+      "y": 40,
+      "onInteract": [
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "tutorial_ai"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bait_spot",
+      "spriteId": "ai_node",
+      "x": 120,
+      "y": 88,
+      "onInteract": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Lay bait quietly\u2026"
+          }
+        },
+        {
+          "command": "RANDOM",
+          "args": {
+            "min": 0,
+            "max": 100,
+            "store": "_CATCH"
+          }
+        },
+        {
+          "command": "IF",
+          "args": {
+            "variable": "_CATCH",
+            "operation": "<=",
+            "value": 50
+          },
+          "children": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Caught: Small animal."
+              }
+            },
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "Bagged",
+                "value": 1
+              }
+            },
+            {
+              "command": "DEC_VARIABLE",
+              "args": {
+                "variable": "Empathy",
+                "value": 2
+              }
+            },
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "ModelAccuracy",
+                "value": 1
+              }
+            }
+          ],
+          "else": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Nothing took the bait. Maybe it\u2019s for the best."
+              }
+            },
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "Empathy",
+                "value": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "Bagged",
+            "value": 0
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "You\u2019re trying to survive. Avoid the cameras."
+          }
+        }
+      ]
+    }
+  ]
+}

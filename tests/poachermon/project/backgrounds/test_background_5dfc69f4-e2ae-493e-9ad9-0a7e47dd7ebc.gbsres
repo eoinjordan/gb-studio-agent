@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "5dfc69f4-e2ae-493e-9ad9-0a7e47dd7ebc",
+  "name": "Test Background",
+  "symbol": "bg_test_background",
+  "width": 20,
+  "height": 18,
+  "imageWidth": 160,
+  "imageHeight": 144,
+  "filename": "player_platform_poacher.png",
+  "tileColors": "",
+  "autoColor": false
+}

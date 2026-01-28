@@ -1,0 +1,12 @@
+{
+  "_resourceType": "background",
+  "id": "c7e0e23f-3a89-4c5c-a030-3cec3fa7a3da",
+  "name": "bg128",
+  "symbol": "bg_bg128",
+  "width": 16,
+  "height": 16,
+  "imageWidth": 128,
+  "imageHeight": 128,
+  "filename": "bg128.png",
+  "tileColors": ""
+}

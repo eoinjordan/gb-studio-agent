@@ -1,0 +1,140 @@
+{
+  "id": "chase_scene",
+  "name": "Chase",
+  "backgroundId": "chase_road",
+  "type": "Platformer",
+  "actors": [
+    {
+      "id": "player_bike",
+      "spriteId": "motorbike",
+      "x": 20,
+      "y": 80,
+      "onUpdate": [
+        {
+          "command": "IF_INPUT_HELD",
+          "args": {
+            "button": "A"
+          },
+          "children": [
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "_PX",
+                "value": 2
+              }
+            }
+          ]
+        },
+        {
+          "command": "IF_INPUT_PRESSED",
+          "args": {
+            "button": "B"
+          },
+          "children": [
+            {
+              "command": "RANDOM",
+              "args": {
+                "min": 0,
+                "max": 100,
+                "store": "_HIT"
+              }
+            },
+            {
+              "command": "IF",
+              "args": {
+                "variable": "_HIT",
+                "operation": "<=",
+                "value": 60
+              },
+              "children": [
+                {
+                  "command": "DISPLAY_TEXT",
+                  "args": {
+                    "text": "WHIP HIT! Poacher down!"
+                  }
+                },
+                {
+                  "command": "INC_VARIABLE",
+                  "args": {
+                    "variable": "PoachersCaught",
+                    "value": 1
+                  }
+                },
+                {
+                  "command": "INC_VARIABLE",
+                  "args": {
+                    "variable": "ModelAccuracy",
+                    "value": 2
+                  }
+                },
+                {
+                  "command": "SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "ranger_map"
+                  }
+                }
+              ],
+              "else": [
+                {
+                  "command": "DISPLAY_TEXT",
+                  "args": {
+                    "text": "Missed! Close the gap!"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "command": "IF",
+          "args": {
+            "variable": "_PX",
+            "operation": ">=",
+            "value": 180
+          },
+          "children": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "They escaped! Try another trap."
+              }
+            },
+            {
+              "command": "SWITCH_SCENE",
+              "args": {
+                "sceneId": "ranger_map"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poacher_bike",
+      "spriteId": "poacher",
+      "x": 180,
+      "y": 80
+    }
+  ],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "A=Accelerate  B=WHIP"
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "_PX",
+            "value": 20
+          }
+        }
+      ]
+    }
+  ]
+}

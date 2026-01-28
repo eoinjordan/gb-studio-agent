@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "eae5c7da-0624-40eb-9659-157c4a478eeb",
+  "name": "Pong Background",
+  "symbol": "bg_pong_background",
+  "width": 20,
+  "height": 18,
+  "imageWidth": 160,
+  "imageHeight": 144,
+  "filename": "placeholder.png",
+  "tileColors": "",
+  "autoColor": false
+}

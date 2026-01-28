@@ -1,0 +1,23 @@
+{
+  "_resourceType": "scene",
+  "id": "scene_1769385876222",
+  "_index": 3,
+  "type": "TOPDOWN",
+  "name": "Pong Arena",
+  "symbol": "scene_pong_arena",
+  "x": 0,
+  "y": 0,
+  "width": 20,
+  "height": 18,
+  "backgroundId": "eae5c7da-0624-40eb-9659-157c4a478eeb",
+  "tilesetId": "",
+  "colorModeOverride": "none",
+  "paletteIds": [],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": ""
+}

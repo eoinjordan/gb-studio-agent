@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "7f748c1d-f861-49ed-a9f0-85ef1190cafc",
+  "name": "Town Background",
+  "symbol": "bg_town_background",
+  "width": 20,
+  "height": 18,
+  "imageWidth": 160,
+  "imageHeight": 144,
+  "filename": "placeholder.png",
+  "tileColors": "",
+  "autoColor": false
+}

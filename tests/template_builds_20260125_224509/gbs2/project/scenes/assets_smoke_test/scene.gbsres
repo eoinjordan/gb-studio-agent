@@ -1,0 +1,34 @@
+{
+  "_resourceType": "scene",
+  "id": "scene_1769381111276",
+  "_index": 17,
+  "type": "TOPDOWN",
+  "name": "Assets Smoke Test",
+  "symbol": "scene_assets_smoke_test",
+  "x": 575,
+  "y": 275,
+  "width": 20,
+  "height": 18,
+  "backgroundId": "4d9a9663-be7d-46b3-b614-927412bb347f",
+  "tilesetId": "",
+  "colorModeOverride": "none",
+  "paletteIds": [
+    "444c886c-6214-48d7-8e3c-4dca4f65dec7"
+  ],
+  "spritePaletteIds": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "0cae84a7-ed50-4b05-b39a-66be5af7ffd2"
+  ],
+  "autoFadeSpeed": 1,
+  "script": [],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": "003d+0f12+002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f8+002+0f8+009+0f!002+0f!008+"
+}

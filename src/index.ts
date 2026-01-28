@@ -1,9 +1,190 @@
-
+﻿
 import express, { Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
-import { randomUUID } from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 
+type JsonRecord = Record<string, any>;
+
+const readJsonFile = (filePath: string): JsonRecord => {
+  const raw = fs.readFileSync(filePath, 'utf8');
+  const cleaned = raw.replace(/^\uFEFF/, '');
+  return JSON.parse(cleaned);
+};
+
+const readPngMetadata = (filePath: string): { width: number; height: number; checksum: string } | null => {
+  if (!fs.existsSync(filePath)) return null;
+  const buffer = fs.readFileSync(filePath);
+  if (buffer.length < 24) return null;
+  const signature = buffer.subarray(0, 8);
+  const expectedSignature = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+  if (!signature.equals(expectedSignature)) return null;
+  const chunkType = buffer.subarray(12, 16).toString('ascii');
+  if (chunkType !== 'IHDR') return null;
+  const width = buffer.readUInt32BE(16);
+  const height = buffer.readUInt32BE(20);
+  const checksum = createHash('sha1').update(buffer).digest('hex');
+  return { width, height, checksum };
+};
+
+const assertAssetExists = (assetPath: string, assetLabel: string): string | null => {
+  if (!assetPath) {
+    return `${assetLabel} filename is required`;
+  }
+  if (!fs.existsSync(assetPath)) {
+    return `${assetLabel} asset not found: ${assetPath}`;
+  }
+  return null;
+};
+
+const toSlug = (value: string): string => {
+  const slug = value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  return slug.length > 0 ? slug : 'item';
+};
+
+const normalizeSceneType = (value?: string): string | undefined => {
+  if (!value) return undefined;
+  const normalized = value.toString().trim().toUpperCase();
+  if (normalized === 'TOPDOWN') return 'TOPDOWN';
+  if (normalized === 'PLATFORM') return 'PLATFORM';
+  if (normalized === 'ADVENTURE') return 'ADVENTURE';
+  if (normalized === 'SHMUP') return 'SHMUP';
+  if (normalized === 'POINTNCLICK' || normalized === 'POINT_N_CLICK' || normalized === 'POINT_AND_CLICK') {
+    return 'POINTNCLICK';
+  }
+  if (normalized === 'LOGO') return 'LOGO';
+  return normalized;
+};
+
+const listGbsresFiles = (dir: string): string[] => {
+  if (!fs.existsSync(dir)) return [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const results: string[] = [];
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...listGbsresFiles(fullPath));
+    } else if (entry.isFile() && entry.name.endsWith('.gbsres')) {
+      results.push(fullPath);
+    }
+  }
+  return results;
+};
+
+const getNextResourceIndex = (dir: string, resourceType: string): number => {
+  let maxIndex = -1;
+  const files = listGbsresFiles(dir);
+  for (const filePath of files) {
+    try {
+      const data = readJsonFile(filePath);
+      if (data && data._resourceType === resourceType && typeof data._index === 'number') {
+        maxIndex = Math.max(maxIndex, data._index);
+      }
+    } catch {
+      continue;
+    }
+  }
+  return maxIndex + 1;
+};
+
+const findSceneResourceById = (scenesDir: string, sceneId: string): { sceneDir: string; data: JsonRecord } | null => {
+  const files = listGbsresFiles(scenesDir);
+  for (const filePath of files) {
+    if (path.basename(filePath) !== 'scene.gbsres') continue;
+    try {
+      const data = readJsonFile(filePath);
+      if (data && data.id === sceneId) {
+        return { sceneDir: path.dirname(filePath), data };
+      }
+    } catch {
+      continue;
+    }
+  }
+  return null;
+};
+
+const findFirstSceneResource = (scenesDir: string): { sceneDir: string; data: JsonRecord } | null => {
+  const files = listGbsresFiles(scenesDir);
+  for (const filePath of files) {
+    if (path.basename(filePath) !== 'scene.gbsres') continue;
+    try {
+      const data = readJsonFile(filePath);
+      return { sceneDir: path.dirname(filePath), data };
+    } catch {
+      continue;
+    }
+  }
+  return null;
+};
+
+const findFirstResourceOfType = (scenesDir: string, resourceType: string): JsonRecord | null => {
+  const files = listGbsresFiles(scenesDir);
+  for (const filePath of files) {
+    try {
+      const data = readJsonFile(filePath);
+      if (data && data._resourceType === resourceType) {
+        return data;
+      }
+    } catch {
+      continue;
+    }
+  }
+  return null;
+};
+
+const ensureDir = (dir: string): void => {
+  fs.mkdirSync(dir, { recursive: true });
+};
+
+const buildDefaultSpriteStates = (spriteWidth: number, spriteHeight: number, numFrames: number): JsonRecord[] => {
+  const safeFrames = Math.max(1, numFrames || 1);
+  const frameWidth = Math.max(8, Math.floor(spriteWidth / safeFrames));
+  const frameHeight = Math.max(8, spriteHeight || 16);
+  const tilesAcross = Math.max(1, Math.floor(frameWidth / 8));
+  const tilesDown = Math.max(1, Math.floor(frameHeight / 8));
+  const frames: JsonRecord[] = [];
+  for (let frameIndex = 0; frameIndex < safeFrames; frameIndex += 1) {
+    const tiles: JsonRecord[] = [];
+    for (let y = 0; y < tilesDown; y += 1) {
+      for (let x = 0; x < tilesAcross; x += 1) {
+        tiles.push({
+          id: randomUUID(),
+          x: x * 8,
+          y: y * 8,
+          sliceX: frameIndex * frameWidth + x * 8,
+          sliceY: y * 8,
+          palette: 0,
+          flipX: false,
+          flipY: false,
+          objPalette: 'OBP0',
+          paletteIndex: 0,
+          priority: false,
+        });
+      }
+    }
+    frames.push({
+      id: randomUUID(),
+      tiles,
+    });
+  }
+  return [
+    {
+      id: randomUUID(),
+      name: '',
+      animationType: safeFrames > 1 ? 'multi' : 'multi',
+      flipLeft: true,
+      animations: [
+        {
+          id: randomUUID(),
+          frames,
+        },
+      ],
+    },
+  ];
+};
 
 
 
@@ -40,7 +221,7 @@ app.post('/actor/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -60,6 +241,52 @@ app.post('/actor/create', (req: Request, res: Response) => {
     }
     scene.actors.push(actor);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
+    const projectScenesDir = path.join(projectRoot, 'project', 'scenes');
+    if (fs.existsSync(projectScenesDir) && fs.lstatSync(projectScenesDir).isDirectory()) {
+      const sceneResource = findSceneResourceById(projectScenesDir, sceneId);
+      if (sceneResource) {
+        const actorDir = path.join(sceneResource.sceneDir, 'actors');
+        ensureDir(actorDir);
+        const base = findFirstResourceOfType(projectScenesDir, 'actor') || {};
+        const actorSlug = toSlug(actor.name || actor.id || 'actor');
+        const nextIndex = getNextResourceIndex(actorDir, 'actor');
+        const spriteSheetId = actor.spriteSheetId ?? actor.spriteId ?? base.spriteSheetId ?? '';
+        const actorResource: JsonRecord = {
+          _resourceType: 'actor',
+          id: actor.id,
+          _index: nextIndex,
+          symbol: `actor_${actorSlug}`,
+          prefabId: actor.prefabId ?? base.prefabId ?? '',
+          name: actor.name || base.name || 'Actor',
+          coordinateType: actor.coordinateType ?? base.coordinateType ?? 'tiles',
+          x: actor.x ?? base.x ?? 0,
+          y: actor.y ?? base.y ?? 0,
+          frame: actor.frame ?? base.frame ?? 0,
+          animate: actor.animate ?? base.animate ?? false,
+          spriteSheetId,
+          paletteId: actor.paletteId ?? base.paletteId ?? '',
+          direction: actor.direction ?? base.direction ?? 'down',
+          moveSpeed: actor.moveSpeed ?? base.moveSpeed ?? 1,
+          animSpeed: actor.animSpeed ?? base.animSpeed ?? 15,
+          isPinned: actor.isPinned ?? base.isPinned ?? false,
+          persistent: actor.persistent ?? base.persistent ?? false,
+          collisionGroup: actor.collisionGroup ?? base.collisionGroup ?? '',
+          collisionExtraFlags: actor.collisionExtraFlags ?? base.collisionExtraFlags ?? [],
+          prefabScriptOverrides: actor.prefabScriptOverrides ?? base.prefabScriptOverrides ?? {},
+          script: actor.script ?? base.script ?? [],
+          startScript: actor.startScript ?? base.startScript ?? [],
+          updateScript: actor.updateScript ?? base.updateScript ?? [],
+          hit1Script: actor.hit1Script ?? base.hit1Script ?? [],
+          hit2Script: actor.hit2Script ?? base.hit2Script ?? [],
+          hit3Script: actor.hit3Script ?? base.hit3Script ?? [],
+        };
+        let actorFilePath = path.join(actorDir, `${actorSlug}.gbsres`);
+        if (fs.existsSync(actorFilePath)) {
+          actorFilePath = path.join(actorDir, `${actorSlug}_${actor.id}.gbsres`);
+        }
+        fs.writeFileSync(actorFilePath, JSON.stringify(actorResource, null, 2), 'utf8');
+      }
+    }
     res.json({ success: true, actor: { ...actor, id: actor.id } });
   } catch (err) {
     let message = 'Unknown error';
@@ -96,7 +323,7 @@ app.post('/trigger/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -116,6 +343,37 @@ app.post('/trigger/create', (req: Request, res: Response) => {
     }
     scene.triggers.push(trigger);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
+    const projectScenesDir = path.join(projectRoot, 'project', 'scenes');
+    if (fs.existsSync(projectScenesDir) && fs.lstatSync(projectScenesDir).isDirectory()) {
+      const sceneResource = findSceneResourceById(projectScenesDir, sceneId);
+      if (sceneResource) {
+        const triggerDir = path.join(sceneResource.sceneDir, 'triggers');
+        ensureDir(triggerDir);
+        const base = findFirstResourceOfType(projectScenesDir, 'trigger') || {};
+        const triggerSlug = toSlug(trigger.name || trigger.id || 'trigger');
+        const nextIndex = getNextResourceIndex(triggerDir, 'trigger');
+        const triggerResource: JsonRecord = {
+          _resourceType: 'trigger',
+          id: trigger.id,
+          _index: nextIndex,
+          symbol: `trigger_${nextIndex}`,
+          prefabId: trigger.prefabId ?? base.prefabId ?? '',
+          name: trigger.name ?? base.name ?? '',
+          x: trigger.x ?? base.x ?? 0,
+          y: trigger.y ?? base.y ?? 0,
+          width: trigger.width ?? base.width ?? 2,
+          height: trigger.height ?? base.height ?? 2,
+          prefabScriptOverrides: trigger.prefabScriptOverrides ?? base.prefabScriptOverrides ?? {},
+          script: trigger.script ?? base.script ?? [],
+          leaveScript: trigger.leaveScript ?? base.leaveScript ?? [],
+        };
+        let triggerFilePath = path.join(triggerDir, `${triggerSlug}.gbsres`);
+        if (fs.existsSync(triggerFilePath)) {
+          triggerFilePath = path.join(triggerDir, `${triggerSlug}_${trigger.id}.gbsres`);
+        }
+        fs.writeFileSync(triggerFilePath, JSON.stringify(triggerResource, null, 2), 'utf8');
+      }
+    }
     res.json({ success: true, trigger: { ...trigger, id: trigger.id } });
   } catch (err) {
     let message = 'Unknown error';
@@ -152,7 +410,7 @@ app.post('/script/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -201,7 +459,7 @@ app.post('/background/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -212,8 +470,44 @@ app.post('/background/create', (req: Request, res: Response) => {
     if (!background.id) {
       background.id = randomUUID();
     }
+    const assetFilename = background.filename || '';
+    const assetPath = assetFilename ? path.join(projectRoot, 'assets', 'backgrounds', assetFilename) : '';
+    const assetError = assertAssetExists(assetPath, 'background');
+    if (assetError) {
+      return res.status(400).json({ error: assetError });
+    }
     data.backgrounds.push(background);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
+    const projectDir = path.join(projectRoot, 'project');
+    const projectBackgroundsDir = path.join(projectDir, 'backgrounds');
+    if (fs.existsSync(projectDir) && fs.lstatSync(projectDir).isDirectory()) {
+      ensureDir(projectBackgroundsDir);
+      const backgroundSlug = toSlug(background.name || background.id || 'background');
+      const base = findFirstResourceOfType(projectBackgroundsDir, 'background') || {};
+      const pngMeta = readPngMetadata(assetPath);
+      const imageWidth = background.imageWidth ?? pngMeta?.width ?? base.imageWidth ?? 160;
+      const imageHeight = background.imageHeight ?? pngMeta?.height ?? base.imageHeight ?? 144;
+      const tileWidth = background.width ?? (imageWidth ? Math.floor(imageWidth / 8) : base.width ?? 20);
+      const tileHeight = background.height ?? (imageHeight ? Math.floor(imageHeight / 8) : base.height ?? 18);
+      const backgroundResource: JsonRecord = {
+        _resourceType: 'background',
+        id: background.id,
+        name: background.name || base.name || backgroundSlug,
+        symbol: `bg_${backgroundSlug}`,
+        width: tileWidth,
+        height: tileHeight,
+        imageWidth,
+        imageHeight,
+        filename: assetFilename,
+        tileColors: background.tileColors ?? '',
+        autoColor: background.autoColor ?? base.autoColor ?? false,
+      };
+      let backgroundFilePath = path.join(projectBackgroundsDir, `${backgroundSlug}.gbsres`);
+      if (fs.existsSync(backgroundFilePath)) {
+        backgroundFilePath = path.join(projectBackgroundsDir, `${backgroundSlug}_${background.id}.gbsres`);
+      }
+      fs.writeFileSync(backgroundFilePath, JSON.stringify(backgroundResource, null, 2), 'utf8');
+    }
     res.json({ success: true, background: { ...background, id: background.id } });
   } catch (err) {
     let message = 'Unknown error';
@@ -250,7 +544,7 @@ app.post('/sprite/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -261,8 +555,42 @@ app.post('/sprite/create', (req: Request, res: Response) => {
     if (!sprite.id) {
       sprite.id = randomUUID();
     }
+    const assetFilename = sprite.filename || '';
+    const assetPath = assetFilename ? path.join(projectRoot, 'assets', 'sprites', assetFilename) : '';
+    const assetError = assertAssetExists(assetPath, 'sprite');
+    if (assetError) {
+      return res.status(400).json({ error: assetError });
+    }
     data.spriteSheets.push(sprite);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
+    const projectDir = path.join(projectRoot, 'project');
+    const projectSpritesDir = path.join(projectDir, 'sprites');
+    if (fs.existsSync(projectDir) && fs.lstatSync(projectDir).isDirectory()) {
+      ensureDir(projectSpritesDir);
+      const spriteSlug = toSlug(sprite.name || sprite.id || 'sprite');
+      const base = findFirstResourceOfType(projectSpritesDir, 'sprite') || {};
+      const pngMeta = readPngMetadata(assetPath);
+      const spriteWidth = sprite.width ?? pngMeta?.width ?? base.width ?? 16;
+      const spriteHeight = sprite.height ?? pngMeta?.height ?? base.height ?? 16;
+      const numFrames = sprite.numFrames ?? Math.max(1, Math.floor(spriteWidth / 16));
+      const spriteResource: JsonRecord = {
+        _resourceType: 'sprite',
+        id: sprite.id,
+        name: sprite.name || base.name || spriteSlug,
+        symbol: `sprite_${spriteSlug}`,
+        numFrames,
+        filename: assetFilename,
+        checksum: sprite.checksum ?? pngMeta?.checksum ?? base.checksum ?? '',
+        width: spriteWidth,
+        height: spriteHeight,
+        states: sprite.states ?? buildDefaultSpriteStates(spriteWidth, spriteHeight, numFrames),
+      };
+      let spriteFilePath = path.join(projectSpritesDir, `${spriteSlug}.gbsres`);
+      if (fs.existsSync(spriteFilePath)) {
+        spriteFilePath = path.join(projectSpritesDir, `${spriteSlug}_${sprite.id}.gbsres`);
+      }
+      fs.writeFileSync(spriteFilePath, JSON.stringify(spriteResource, null, 2), 'utf8');
+    }
     res.json({ success: true, sprite: { ...sprite, id: sprite.id } });
   } catch (err) {
     let message = 'Unknown error';
@@ -299,7 +627,7 @@ app.post('/emote/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -348,7 +676,7 @@ app.post('/avatar/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -397,7 +725,7 @@ app.post('/font/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -448,7 +776,7 @@ app.post('/tileset/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -497,7 +825,7 @@ app.post('/sound/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -546,7 +874,7 @@ app.post('/music/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -595,7 +923,7 @@ app.post('/palette/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -644,7 +972,7 @@ app.post('/variable/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -693,7 +1021,7 @@ app.post('/constant/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -742,7 +1070,7 @@ app.post('/engine-field-value/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -791,7 +1119,7 @@ app.post('/settings/update', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -800,6 +1128,20 @@ app.post('/settings/update', (req: Request, res: Response) => {
     }
     Object.assign(data.settings, settings);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
+    const projectSettingsPath = path.join(projectRoot, 'project', 'settings.gbsres');
+    if (fs.existsSync(projectSettingsPath)) {
+      let projectSettings: JsonRecord;
+      try {
+        projectSettings = readJsonFile(projectSettingsPath);
+      } catch (parseErr) {
+        return res.status(400).json({ error: `Invalid JSON in settings.gbsres: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
+      }
+      if (typeof projectSettings !== 'object' || projectSettings === null) {
+        return res.status(400).json({ error: 'Invalid settings.gbsres format' });
+      }
+      Object.assign(projectSettings, settings);
+      fs.writeFileSync(projectSettingsPath, JSON.stringify(projectSettings, null, 2), 'utf8');
+    }
     res.json({ success: true, settings: data.settings });
   } catch (err) {
     let message = 'Unknown error';
@@ -836,7 +1178,7 @@ app.post('/metadata/update', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -881,7 +1223,7 @@ app.post('/prefab/actor/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -930,7 +1272,7 @@ app.post('/prefab/trigger/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -983,7 +1325,7 @@ app.post('/scene/create', (req: Request, res: Response) => {
     // Read and update .gbsproj
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -996,6 +1338,40 @@ app.post('/scene/create', (req: Request, res: Response) => {
     }
     data.scenes.push(scene);
     fs.writeFileSync(gbsprojPath, JSON.stringify(data, null, 2), 'utf8');
+    const projectScenesDir = path.join(projectRoot, 'project', 'scenes');
+    ensureDir(projectScenesDir);
+    const sceneSlug = toSlug(scene.name || scene.id || 'scene');
+    const sceneDir = path.join(projectScenesDir, sceneSlug);
+    ensureDir(sceneDir);
+    ensureDir(path.join(sceneDir, 'actors'));
+    ensureDir(path.join(sceneDir, 'triggers'));
+    const template = findFirstSceneResource(projectScenesDir);
+    const nextIndex = getNextResourceIndex(projectScenesDir, 'scene');
+    const base = template ? template.data : {};
+    const sceneResource: JsonRecord = {
+      _resourceType: 'scene',
+      id: scene.id,
+      _index: nextIndex,
+      type: normalizeSceneType(scene.type) || base.type || 'TOPDOWN',
+      name: scene.name || base.name || 'New Scene',
+      symbol: `scene_${sceneSlug}`,
+      x: typeof base.x === 'number' ? base.x : 0,
+      y: typeof base.y === 'number' ? base.y : 0,
+      width: scene.width ?? base.width ?? 20,
+      height: scene.height ?? base.height ?? 18,
+      backgroundId: scene.backgroundId ?? base.backgroundId ?? '',
+      tilesetId: scene.tilesetId ?? base.tilesetId ?? '',
+      colorModeOverride: scene.colorModeOverride ?? base.colorModeOverride ?? 'none',
+      paletteIds: scene.paletteIds ?? base.paletteIds ?? [],
+      spritePaletteIds: scene.spritePaletteIds ?? base.spritePaletteIds ?? [],
+      autoFadeSpeed: scene.autoFadeSpeed ?? base.autoFadeSpeed ?? 1,
+      script: scene.script ?? [],
+      playerHit1Script: scene.playerHit1Script ?? base.playerHit1Script ?? [],
+      playerHit2Script: scene.playerHit2Script ?? base.playerHit2Script ?? [],
+      playerHit3Script: scene.playerHit3Script ?? base.playerHit3Script ?? [],
+      collisions: scene.collisions ?? base.collisions ?? '',
+    };
+    fs.writeFileSync(path.join(sceneDir, 'scene.gbsres'), JSON.stringify(sceneResource, null, 2), 'utf8');
     res.json({ success: true, scene: { ...scene, id: scene.id } });
   } catch (err) {
     let message = 'Unknown error';
@@ -1092,7 +1468,7 @@ app.post('/inventory', (req: Request, res: Response) => {
     }
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(500).json({ error: `Failed to parse .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -1141,7 +1517,7 @@ app.post('/validate', (req: Request, res: Response) => {
     }
     let data;
     try {
-      data = JSON.parse(fs.readFileSync(gbsprojPath, 'utf8'));
+      data = readJsonFile(gbsprojPath);
     } catch (parseErr) {
       return res.status(400).json({ error: `Invalid JSON in .gbsproj: ${parseErr instanceof Error ? parseErr.message : parseErr}` });
     }
@@ -1184,3 +1560,4 @@ if (require.main === module) {
     console.error('Failed to start server:', err);
   });
 }
+

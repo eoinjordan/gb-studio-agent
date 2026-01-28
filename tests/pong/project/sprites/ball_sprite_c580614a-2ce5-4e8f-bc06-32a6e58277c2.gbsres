@@ -1,0 +1,83 @@
+{
+  "_resourceType": "sprite",
+  "id": "c580614a-2ce5-4e8f-bc06-32a6e58277c2",
+  "name": "Ball Sprite",
+  "symbol": "sprite_ball_sprite",
+  "numFrames": 1,
+  "filename": "static.png",
+  "checksum": "228d1b4eab9534c670445e5b6c0a03cc411b6657",
+  "width": 16,
+  "height": 16,
+  "states": [
+    {
+      "id": "55ac5ef7-1050-491c-9539-74c2ce389fa1",
+      "name": "",
+      "animationType": "multi",
+      "flipLeft": true,
+      "animations": [
+        {
+          "id": "0cd1aaac-9912-479d-a772-8a493798ab5a",
+          "frames": [
+            {
+              "id": "bb2272ca-c300-41fc-a5cc-853a35cd7d35",
+              "tiles": [
+                {
+                  "id": "eddffa78-f986-4f88-952a-1b19acc40ec6",
+                  "x": 0,
+                  "y": 0,
+                  "sliceX": 0,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "73a7972a-ad81-444f-a317-4091a4c74558",
+                  "x": 8,
+                  "y": 0,
+                  "sliceX": 8,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "603d2287-46a8-471c-b0fe-ced23299cfed",
+                  "x": 0,
+                  "y": 8,
+                  "sliceX": 0,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "188e09cb-399f-4aac-b7b8-ee021894a80e",
+                  "x": 8,
+                  "y": 8,
+                  "sliceX": 8,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

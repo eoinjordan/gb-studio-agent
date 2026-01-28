@@ -1,0 +1,56 @@
+{
+  "id": "title",
+  "name": "Title",
+  "backgroundId": "title",
+  "type": "TopDown",
+  "actors": [
+    {
+      "id": "start_ranger",
+      "spriteId": "ranger",
+      "x": 40,
+      "y": 96,
+      "onInteract": [
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "ranger_map"
+          }
+        }
+      ]
+    },
+    {
+      "id": "start_poacher",
+      "spriteId": "poacher",
+      "x": 184,
+      "y": 96,
+      "onInteract": [
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "poacher_map"
+          }
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Gotta Save \u2019Em All, Gotta Learn Together."
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Talk to a character to choose your path."
+          }
+        }
+      ]
+    }
+  ]
+}

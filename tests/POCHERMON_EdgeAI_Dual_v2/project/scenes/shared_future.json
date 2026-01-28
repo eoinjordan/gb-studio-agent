@@ -1,0 +1,33 @@
+{
+  "id": "shared_future",
+  "name": "Shared Future",
+  "backgroundId": "shared_future",
+  "type": "TopDown",
+  "actors": [],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Ranger + Poacher: \"We build this together.\""
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Narrator: \"Machines learn from data. We learn from each other.\""
+          }
+        },
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "title"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "_resourceType": "scene",
+  "_index": 0,
+  "id": "72e7f8b7-502b-44c8-890f-635d7e60a5b5",
+  "type": "TOPDOWN",
+  "name": "Scene 1",
+  "symbol": "scene_scene_1",
+  "x": 0,
+  "y": 0,
+  "width": 40,
+  "height": 36,
+  "backgroundId": "a8b56b4e-7283-400d-b5f4-e3f4475a25b5",
+  "tilesetId": "",
+  "colorModeOverride": "none",
+  "paletteIds": [],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": ""
+}

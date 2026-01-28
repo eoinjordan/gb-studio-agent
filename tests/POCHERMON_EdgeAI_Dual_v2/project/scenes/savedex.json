@@ -1,0 +1,39 @@
+{
+  "id": "savedex",
+  "name": "SaveDex",
+  "backgroundId": "shared_future",
+  "type": "TopDown",
+  "actors": [],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "SaveDex \u2014 Species Saved"
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Elephant: [SavedElephant] | Rhino: [SavedRhino] | Bird: [SavedBird]"
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Total: [AnimalsSaved]"
+          }
+        },
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "ranger_map"
+          }
+        }
+      ]
+    }
+  ]
+}

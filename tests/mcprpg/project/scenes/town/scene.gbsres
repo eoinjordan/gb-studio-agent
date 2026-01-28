@@ -1,0 +1,23 @@
+{
+  "_resourceType": "scene",
+  "id": "scene_1769385874156",
+  "_index": 3,
+  "type": "TOPDOWN",
+  "name": "Town",
+  "symbol": "scene_town",
+  "x": 0,
+  "y": 0,
+  "width": 20,
+  "height": 18,
+  "backgroundId": "7f748c1d-f861-49ed-a9f0-85ef1190cafc",
+  "tilesetId": "",
+  "colorModeOverride": "none",
+  "paletteIds": [],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": ""
+}

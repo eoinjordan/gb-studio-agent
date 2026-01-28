@@ -1,0 +1,23 @@
+{
+  "_resourceType": "scene",
+  "id": "scene_1769381111965",
+  "_index": 8,
+  "type": "TOPDOWN",
+  "name": "Assets Smoke Test",
+  "symbol": "scene_assets_smoke_test",
+  "x": 638,
+  "y": 73,
+  "width": 20,
+  "height": 18,
+  "backgroundId": "9629cc74-9db2-4810-bc84-3bfedc7b2b0d",
+  "tilesetId": "",
+  "colorModeOverride": "none",
+  "paletteIds": [],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
+  "script": [],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": "003d+0f12+002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f!0010+0f!002+0f8+002+0f8+009+0f!002+0f!008+"
+}

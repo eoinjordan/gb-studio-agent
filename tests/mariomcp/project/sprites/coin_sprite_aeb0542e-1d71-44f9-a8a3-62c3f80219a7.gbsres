@@ -1,0 +1,135 @@
+{
+  "_resourceType": "sprite",
+  "id": "aeb0542e-1d71-44f9-a8a3-62c3f80219a7",
+  "name": "Coin Sprite",
+  "symbol": "sprite_coin_sprite",
+  "numFrames": 1,
+  "filename": "checkbox.png",
+  "checksum": "5aae20189fc4672a169b7285d63e0967056de329",
+  "width": 32,
+  "height": 16,
+  "states": [
+    {
+      "id": "027fefd1-28ec-4b20-b534-f30b86b66ca8",
+      "name": "",
+      "animationType": "multi",
+      "flipLeft": true,
+      "animations": [
+        {
+          "id": "3160948f-db6f-46c6-9dbb-424170f94dfd",
+          "frames": [
+            {
+              "id": "c387da70-ae27-4f6c-b05f-e1bb12354f53",
+              "tiles": [
+                {
+                  "id": "3182102c-1d7f-4030-9814-614346f44807",
+                  "x": 0,
+                  "y": 0,
+                  "sliceX": 0,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "f5cf7c9e-ca0e-4cbf-8ad7-fd5626b2f886",
+                  "x": 8,
+                  "y": 0,
+                  "sliceX": 8,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "43efcccc-6b5f-42d8-bcbd-d403c9cfc532",
+                  "x": 16,
+                  "y": 0,
+                  "sliceX": 16,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "18e0ec4d-0f1e-4f75-a767-d6d5715090d9",
+                  "x": 24,
+                  "y": 0,
+                  "sliceX": 24,
+                  "sliceY": 0,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "abd4a993-6769-46c1-bca6-ed98accabc59",
+                  "x": 0,
+                  "y": 8,
+                  "sliceX": 0,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "bf31124d-39d5-484b-9073-e518be5b599d",
+                  "x": 8,
+                  "y": 8,
+                  "sliceX": 8,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "36d0c360-86cd-406e-803f-8bc7135c006e",
+                  "x": 16,
+                  "y": 8,
+                  "sliceX": 16,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                },
+                {
+                  "id": "a7b3fb66-1e1a-4e4c-ba1f-1afb37793e07",
+                  "x": 24,
+                  "y": 8,
+                  "sliceX": 24,
+                  "sliceY": 8,
+                  "palette": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "objPalette": "OBP0",
+                  "paletteIndex": 0,
+                  "priority": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

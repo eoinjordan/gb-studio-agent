@@ -1,0 +1,45 @@
+{
+  "id": "tutorial_ai",
+  "name": "Edge AI Tutorial",
+  "backgroundId": "tutorial_ai",
+  "type": "TopDown",
+  "actors": [],
+  "triggers": [
+    {
+      "id": "init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Edge AI = models on devices near the data."
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Benefits: low latency, privacy, no Wi\u2011Fi needed."
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "But beware: bias, false positives, energy limits."
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Learn together: community data fixes models."
+          }
+        },
+        {
+          "command": "SWITCH_SCENE",
+          "args": {
+            "sceneId": "ranger_map"
+          }
+        }
+      ]
+    }
+  ]
+}

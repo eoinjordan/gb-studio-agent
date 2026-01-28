@@ -1,0 +1,216 @@
+{
+  "id": "savannah_map",
+  "name": "Savannah",
+  "backgroundId": "savannah_map",
+  "type": "TopDown",
+  "paletteId": "earthy",
+  "width": 32,
+  "height": 32,
+  "actors": [
+    {
+      "id": "player",
+      "spriteId": "ranger",
+      "isPlayer": true,
+      "x": 32,
+      "y": 32,
+      "onUpdate": [
+        {
+          "command": "PLAYER_INPUT_MOVE",
+          "args": {
+            "speed": "2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "trap_spot_1",
+      "spriteId": "bird",
+      "x": 64,
+      "y": 64,
+      "onInteract": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Bird: \"Camera here? Fine, but I expect royalties.\""
+          }
+        },
+        {
+          "command": "IF",
+          "args": {
+            "variable": "FilmRolls",
+            "operation": ">",
+            "value": 0
+          },
+          "children": [
+            {
+              "command": "DEC_VARIABLE",
+              "args": {
+                "variable": "FilmRolls",
+                "value": 1
+              }
+            },
+            {
+              "command": "INC_VARIABLE",
+              "args": {
+                "variable": "TrapsSet",
+                "value": 1
+              }
+            },
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Trap armed. Quietly hopeful."
+              }
+            },
+            {
+              "command": "START_TIMER",
+              "args": {
+                "interval": 180
+              },
+              "children": [
+                {
+                  "command": "RANDOM",
+                  "args": {
+                    "min": 0,
+                    "max": 1,
+                    "store": "_R"
+                  }
+                },
+                {
+                  "command": "IF",
+                  "args": {
+                    "variable": "_R",
+                    "operation": "==",
+                    "value": 1
+                  },
+                  "children": [
+                    {
+                      "command": "SWITCH_SCENE",
+                      "args": {
+                        "sceneId": "chase_scene"
+                      }
+                    }
+                  ],
+                  "else": [
+                    {
+                      "command": "DISPLAY_TEXT",
+                      "args": {
+                        "text": "An animal photo! (Ethical and photogenic.)"
+                      }
+                    },
+                    {
+                      "command": "INC_VARIABLE",
+                      "args": {
+                        "variable": "Score",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "else": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Out of film. The plot thickens... thinly."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "npc_elephant",
+      "spriteId": "elephant",
+      "x": 200,
+      "y": 40,
+      "onInteract": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Elephant: \"We rely on you, Ranger.\""
+          }
+        }
+      ]
+    },
+    {
+      "id": "ambient_quip",
+      "spriteId": "rhino",
+      "x": 120,
+      "y": 48,
+      "onInteract": [
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Ranger: \"This feels like a Threepwood plan... without the plan.\""
+          }
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "scene_init",
+      "event": "SCENE_INIT",
+      "script": [
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "FilmRolls",
+            "value": 3
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "TrapsSet",
+            "value": 0
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "PoachersCaught",
+            "value": 0
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "Energy",
+            "value": 10
+          }
+        },
+        {
+          "command": "SET_VARIABLE",
+          "args": {
+            "variable": "Score",
+            "value": 0
+          }
+        },
+        {
+          "command": "DISPLAY_TEXT",
+          "args": {
+            "text": "Professor Tulip: \"Set camera traps. Try to look heroic.\""
+          }
+        },
+        {
+          "command": "START_TIMER",
+          "args": {
+            "interval": 900
+          },
+          "children": [
+            {
+              "command": "DISPLAY_TEXT",
+              "args": {
+                "text": "Ranger: \"Another fine day to chase poor decisions.\""
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

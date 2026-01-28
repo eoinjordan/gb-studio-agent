@@ -1,0 +1,13 @@
+{
+  "_resourceType": "background",
+  "id": "ecd442c2-fca5-432e-b830-73ada7a966cd",
+  "name": "bar_kickstand_bg",
+  "symbol": "bg_bar_kickstand_bg",
+  "width": 20,
+  "height": 18,
+  "imageWidth": 160,
+  "imageHeight": 144,
+  "filename": "bar_kickstand_bg.png",
+  "tileColors": "",
+  "autoColor": false
+}
