@@ -80,7 +80,14 @@ See the [TUTORIAL.md](TUTORIAL.md) for a complete, step-by-step guide to buildin
 This package supports the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). You can run the server in MCP stdio mode for use with Claude Desktop and other MCP clients:
 
 ```sh
+npm run build:mcp
 node build/mcp.js
+```
+
+The MCP stdio server proxies to the local REST API on http://localhost:3000, so start the REST server first:
+
+```sh
+gbstudio-claude-mcp
 ```
 
 Or add this to your MCP client configuration:
@@ -93,6 +100,42 @@ Or add this to your MCP client configuration:
          "args": ["/absolute/path/to/build/mcp.js"]
       }
    }
+}
+```
+
+---
+
+## Clawdbot / Moltbot Compatibility
+
+Clawdbot and Moltbot discover tools via AgentSkills-compatible `SKILL.md` files. This repo ships one at:
+
+- `skills/gbstudio-mcp/SKILL.md`
+
+Compatibility depends on transport:
+
+- If Clawdbot can run stdio MCP servers as child processes, `node build/mcp.js` will work.
+- If your Clawdbot setup expects HTTP+SSE MCP servers, you will need a bridge, because this MCP server is stdio-only.
+- If you only run the REST API, Clawdbot will not auto-discover tools as MCP.
+
+To enable the skill in Moltbot, add an entry like this:
+
+```json
+{
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "~/.clawdbot/skills"
+      ],
+      "watch": true,
+      "watchDebounceMs": 250
+    },
+    "entries": {
+      "gbstudio-mcp": {
+        "enabled": true,
+        "env": {}
+      }
+    }
+  }
 }
 ```
 

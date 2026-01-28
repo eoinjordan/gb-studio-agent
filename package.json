@@ -1,6 +1,7 @@
 {
   "name": "gbstudio-claude-mcp",
-  "version": "1.0.3",
+  "mcpName": "io.github.eoinjordan/gbstudio-claude-mcp",
+  "version": "1.0.4",
   "description": "Claude MCP server for GB Studio project manipulation.",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +9,7 @@
     "build": "tsc",
     "test": "jest",
     "start": "node dist/index.js",
-    "build:mcp": "tsc src/mcp.ts --outDir build",
+    "build:mcp": "tsc --project tsconfig.mcp.json",
     "lint": "eslint --ext .ts src/ tests/",
     "type-check": "tsc --noEmit --project tsconfig.json"
   },
@@ -37,8 +38,23 @@
   "bin": {
     "gbstudio-claude-mcp": "./dist/index.js"
   },
+  "clawdbot": {
+    "extensions": [
+      "./extensions/gbstudio-claude-mcp.ts"
+    ]
+  },
+  "moltbot": {
+    "extensions": [
+      "./extensions/gbstudio-claude-mcp.ts"
+    ]
+  },
   "files": [
+    "build",
     "dist",
+    "extensions",
+    "skills",
+    "clawdbot.plugin.json",
+    "moltbot.plugin.json",
     "README.md",
     "LICENSE"
   ],
