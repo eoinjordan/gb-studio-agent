@@ -2,6 +2,7 @@
 
 Prompt to build out a template for your students kids or self to extend.
 <img width="500" height="1000" alt="Screenshot_20260128-214729 WhatsApp" src="https://github.com/user-attachments/assets/8035e5c3-a2a7-4be8-ad51-fec2c89ab048" />
+<img width="1332" height="675" alt="image" src="https://github.com/user-attachments/assets/84bc7adb-b129-49d0-aca7-5e544cd4ccc1" />
 
 ![gif](https://github.com/user-attachments/assets/6d566f6a-921e-49ac-8e74-b012e0b7d44f)
 
