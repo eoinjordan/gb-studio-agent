@@ -1,9 +1,50 @@
 ## GB Studio Agentic MCP Server for creating GameBoy Games.
 
-Prompt to build out a template for your students kids or self to extend.
-<img width="1332" height="675" alt="image" src="https://github.com/user-attachments/assets/84bc7adb-b129-49d0-aca7-5e544cd4ccc1" />
+Prompt to build out a template for your students, kids, or yourself to extend.
 
-![gif](https://github.com/user-attachments/assets/6d566f6a-921e-49ac-8e74-b012e0b7d44f)
+![Image](https://github.com/user-attachments/assets/84bc7adb-b129-49d0-aca7-5e544cd4ccc1)
+
+![GIF](https://github.com/user-attachments/assets/6d566f6a-921e-49ac-8e74-b012e0b7d44f)
+
+
+## Quick Start
+
+
+
+1. **Install**: `npm install -g gbstudio-claude-mcp`
+
+2. **Start server**: `gbstudio-claude-mcp`
+
+3. **Connect Claude Desktop** (see TUTORIAL.md)
+
+4. **Prompt Claude**: "Review and test my application logic"
+
+
+
+That’s it. Claude will reivew, extend or even generate a playable game template you can iterate on with students in GB Studio.
+
+
+## Vibe Coding, LLMs, and Modern Education: We Must Give Kids Constructive Tools, Not Just Answers
+
+After 14 years teaching kids programming, electronics, 3D printing, and game development, I’ve learned this: the best educational tools don’t just make things easier. They make learning a rewarding activity. GB Studio is one of those tools. It’s a visual game builder that gives you a  Game Boy development, putting real creative power in the hands of students, educators, and hobbyists to build for physical hardware. When we combine GB Studio with education on what is possible to do with large language models (LLMs), we bring a postitive view to students on how they can integrate with rather than rely on them as a crutch.
+
+## What is Vibe Coding?
+
+“Vibe coding” isn’t just a buzzword. It’s a paradigm shift. It’s programming stripped of syntactic gatekeeping, where creators focus on flow, logic, and ideas instead of memorizing semicolons. Tools like Scratch, App Inventor, and GB Studio embody this philosophy: they eliminate barriers and recenter programming around what actually matters: creativity and problem-solving.
+
+For kids, vibe coding is a what they are growing up with. It will let them focus on the “why” and “how” of programming without drowning in syntax. This isn’t just helpful. It’s important for students to get to think in systems, design, and logic but are shut out by traditional coding’s steep learning curve.
+
+## The Role of LLMs in Education
+
+Large language models like ChatGPT have sparked fierce debate in education, and for good reason. Used carelessly, they become cheating tools  that replaces thinking with copy-pasa mindset. But used with purpos, they can become scaffolding that accelerates real learning. The difference isn’t the tool. It’s how we wield it.
+
+## This is exactly why I built the Clawdbot MCP server. By integrating LLMs directly with GB Studio, users and teachers can:
+
+* Scaffold projects: Generate starter templates, assets, and event flows from simple prompts.
+* Automate testing: Run smoke tests to catch bugs and validate project logic.
+* Encourage iteration: Help students refine their projects by providing suggestions and examples.
+
+Games can be built from scratch too but they wont be AAA class so measure your expectations lol
 
 ### Pong (Game Boy)
 ```
