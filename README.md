@@ -24,7 +24,7 @@ Prompt to build out a template for your students, kids, or yourself to extend.
 That’s it. Claude will reivew, extend or even generate a playable game template you can iterate on with students in GB Studio.
 
 
-## Vibe Coding, LLMs, and Modern Education: We Must Give Kids Constructive Tools, Not Just Answers
+## Vibe Coding, LLMs, and Modern Education: Can give students Constructive Tools, Not Just Answers
 
 After 14 years teaching kids programming, electronics, 3D printing, and game development, I’ve learned this: the best educational tools don’t just make things easier. They make learning a rewarding activity. GB Studio is one of those tools. It’s a visual game builder that gives you a  Game Boy development, putting real creative power in the hands of students, educators, and hobbyists to build for physical hardware. When we combine GB Studio with education on what is possible to do with large language models (LLMs), we bring a postitive view to students on how they can integrate with rather than rely on them as a crutch.
 
