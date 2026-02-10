@@ -2,6 +2,9 @@
 
 Prompt to build out a template for your students, kids, or yourself to extend.
 
+<img width="1228" height="695" alt="image" src="https://github.com/user-attachments/assets/3c909c0d-bd1c-44cd-b80d-a83bd5c15e9c" />
+
+
 ![Image](https://github.com/user-attachments/assets/84bc7adb-b129-49d0-aca7-5e544cd4ccc1)
 
 ![GIF](https://github.com/user-attachments/assets/6d566f6a-921e-49ac-8e74-b012e0b7d44f)
